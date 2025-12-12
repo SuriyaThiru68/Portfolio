@@ -20,7 +20,7 @@ const Navbar = ({ activeSection }) => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-primary/50 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16">
         <div className="flex justify-between items-center py-2 lg:py-2">
-          <div className="text-xl lg:text-2xl font-bold">
+          <div className="text-2xl lg:text-3xl font-bold">
             <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="hover:text-secondary transition-colors" aria-label="Scroll to Home section">ST</a>
           </div>
           
@@ -30,7 +30,7 @@ const Navbar = ({ activeSection }) => {
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}
-                  className={`relative font-medium text-sm transition-colors hover:text-secondary ${activeSection === item.toLowerCase() ? 'text-secondary' : ''}`}
+                  className={`relative font-medium text-base lg:text-lg transition-colors hover:text-secondary ${activeSection === item.toLowerCase() ? 'text-secondary' : ''}`}
                   onMouseEnter={() => handleHover(true)}
                   onMouseLeave={() => handleHover(false)}
                   onClick={(e) => { e.preventDefault(); scrollToSection(item.toLowerCase()); }}
@@ -62,7 +62,7 @@ const Navbar = ({ activeSection }) => {
                   <a
                     href={`#${item.toLowerCase()}`}
                     onClick={(e) => { e.preventDefault(); scrollToSection(item.toLowerCase()); }}
-                    className="block py-2 hover:text-secondary transition-colors"
+                    className="block py-2 text-base hover:text-secondary transition-colors"
                     aria-label={`Scroll to ${item} section`}
                   >
                     {item}
