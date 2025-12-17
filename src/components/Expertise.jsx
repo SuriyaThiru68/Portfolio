@@ -11,17 +11,7 @@ const expertiseItems = [
     icon: <Palette className="w-12 h-12" />,
     title: 'Designer',
     description: 'Creating intuitive, beautiful interfaces that users love with attention to every detail.'
-  },
-  {
-    icon: <Lightbulb className="w-12 h-12" />,
-    title: 'AI & Machine Learning',
-    description: 'Implementing intelligent solutions that learn and adapt to solve complex problems.'
-  },
-  {
-    icon: <Rocket className="w-12 h-12" />,
-    title: 'Product Development',
-    description: 'From concept to deployment, bringing your digital products to life with precision.'
-  }
+  } 
 ];
 
 const Expertise = () => {

@@ -1,22 +1,33 @@
 import React from 'react';
 
 const skills = [
-  {
-    category: 'Frontend',
-    items: ['HTML & CSS', 'JavaScript', 'React', 'Responsive Design']
+    {
+    category: 'Programming',
+    items: ['Python', 'Java', 'C']
   },
   {
-    category: 'Programming',
-    items: ['Python', 'Java', 'C', 'SQL']
+    category: 'Web Development',
+    items: ['HTML & CSS', 'Tailwind CSS' ,'JavaScript', 'React','Bootstrap' ]
+  },
+  {
+    category: 'DataBases',
+    items: ['SQL','MongoDb']
+  },
+   {
+    category: 'Tools',
+    items: ['Git', 'GitHub', 'VS Code', 'Jupyter Notebook','MongoDb Compass']
   },
   {
     category: 'Design',
-    items: ['Figma', 'Framer', 'Photoshop', 'Canva']
+    items: ['Figma', 'Framer','Affinity Designer' ,'Photoshop', 'Canva']
   },
+
+  
   {
-    category: 'Tools',
-    items: ['GitHub', 'Wireframing', 'UX/UI Design', 'Prototyping']
+    category: 'Deployment & Hosting',
+    items: ['Vercel', 'Netlify', 'GitHub Pages']
   }
+
 ];
 
 const Skills = () => {
