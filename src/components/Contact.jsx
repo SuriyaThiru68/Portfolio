@@ -4,7 +4,8 @@ const socials = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/suriyathiruppathy/' },
   { name: 'GitHub', url: 'https://github.com/SuriyaThiru68' },
   { name: 'Behance', url: 'https://www.behance.net/suriyathiru' },
-  { name: 'LeetCode', url: 'https://leetcode.com/u/suriyathiruppathy/' }
+  { name: 'Codolio', url: 'https://codolio.com/profile/SURIYA%20T'}
+
 ];
 
 const Contact = () => {
