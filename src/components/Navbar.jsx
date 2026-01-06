@@ -22,7 +22,7 @@ const Navbar = ({ activeSection }) => {
         <div className="flex justify-between items-center py-2 lg:py-2">
           <div className="text-2xl lg:text-3xl font-bold">
             <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="hover:opacity-80 transition-opacity" aria-label="Scroll to Home section">
-              <img src="./src/components/assests/mylogo.png" alt="Portfolio Logo" className="h-10 lg:h-12 w-auto" />
+              <img src=".src\components\assests\portlogo.png" alt="Portfolio Logo" className="h-10 lg:h-12 w-auto" />
             </a>
           </div>
           
