@@ -15,7 +15,7 @@ const Hero = () => {
       
       <div className="z-10 max-w-7xl w-full">
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 leading-tight">
-          <span className="block animate-fadeInUp text-white">Designer &</span>
+          <span className="block animate-fadeInUp text-white">Designerrr &</span>
           <span className="block animate-fadeInUp delay-100 text-white">Developer</span>
           <span className="block animate-fadeInUp delay-200 text-white relative">
             Suriya
