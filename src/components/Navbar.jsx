@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X } from 'lucide-react';
+import portlogo from './assests/portlogo.png';
 
 const Navbar = ({ activeSection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -22,7 +23,7 @@ const Navbar = ({ activeSection }) => {
         <div className="flex justify-between items-center py-2 lg:py-2">
           <div className="text-2xl lg:text-3xl font-bold">
             <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="hover:opacity-80 transition-opacity" aria-label="Scroll to Home section">
-              <img src=".src\components\assests\portlogo.png" alt="Portfolio Logo" className="h-10 lg:h-12 w-auto" />
+              <img src={portlogo} alt="Portfolio Logo" className="h-10 lg:h-12 w-auto" />
             </a>
           </div>
           

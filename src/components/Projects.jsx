@@ -3,23 +3,30 @@ import popcorniq from './assests/popcorniq.jpg';
 import codeNotify from './assests/code notify.jpg';
 import gamestore from './assests/game store.jpg';
 import iot from './assests/iot.png'
+import onboardingAgent from './assests/onboarding.png';
 
 
 const projects = [
+  {
+  name: 'AI Onboarding Agent',
+  description: 'A full-stack AI-powered onboarding platform for vendors and distributors with invite links, KYC, contracts, analytics, and AI assistance.',
+  image: onboardingAgent,
+  link: 'https://ai-onboarding-agent.vercel.app/',
+  tags: ['React', 'Python', 'MongoDB', 'AI', 'Full Stack']
+  },
+   {
+    name: 'Movie Website',
+    description: 'This is Movie Website Called POPCORNIQ its Full-stack movie discovery platform',
+    image: popcorniq,
+    link: 'https://popcorniq-pearl.vercel.app/',
+    tags: ['React', 'API', 'Frontend']
+  },
   {
     name: 'Public Toilet Feedback System (IoT)',
     description: 'Designed an IoT-based feedback system that sends real-time hygiene alerts to staff via Telegram.',
     image: iot,
     link: '',
     tags: ['IoT', 'Automation', 'Telegram']
-  },
-
-  {
-    name: 'Movie Website',
-    description: 'This is Movie Website Called POPCORNIQ its Full-stack movie discovery platform',
-    image: popcorniq,
-    link: 'https://popcorniq-pearl.vercel.app/',
-    tags: ['React', 'API', 'Frontend']
   },
   {
     name: 'Code Notify',
