@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Importing assets - keeping your original paths
-import popcorniq from './assests/portfolio.png';
+import popcorniq from './assests/popcorniq.jpg';
 import codeNotify from './assests/code notify.jpg';
 import gamestore from './assests/game store.jpg';
 import iot from './assests/iot.png'
@@ -11,7 +11,7 @@ import onboardingAgent from './assests/onboarding.png';
 const projects = [
   {
     id: '001',
-    name: 'POPCORNIQ',
+    name: 'Cinematic Movie Explorer',
     description: 'Full-stack movie discovery platform with cinematic UI and real-time data.',
     image: popcorniq,
     link: 'https://popcorniq-pearl.vercel.app/',
@@ -20,12 +20,12 @@ const projects = [
   },
   {
     id: '002',
-    name: 'AI Onboarding Agent',
-    description: 'A full-stack AI-powered onboarding platform for vendors and distributors.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426',
-    link: 'https://ai-onboarding-agent.vercel.app/',
-    tags: ['Full Stack', 'AI'],
-    size: 'medium'
+    name: 'Game Store',
+    description: 'Digital storefront for Xbox games and gaming community.',
+    image: 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&q=80&w=2342',
+    link: 'https://suriyathiru68.github.io/Game-Store/',
+    tags: ['Frontend', 'React'],
+    size: 'wide'
   },
   {
     id: '003',
@@ -38,21 +38,21 @@ const projects = [
   },
   {
     id: '004',
-    name: 'Public Toilet System',
+    name: 'AI Onboarding Agent',
+    description: 'A full-stack AI-powered onboarding platform for vendors and distributors.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426',
+    link: 'https://ai-onboarding-agent.vercel.app/',
+    tags: ['Full Stack', 'AI'],
+    size: 'medium'
+  },
+  {
+    id: '005',
+    name: 'Public Toilet Feedback System',
     description: 'IoT-based hygiene alert system with Telegram integration.',
     image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=2340',
     link: '',
     tags: ['IoT', 'Automation'],
     size: 'medium'
-  },
-  {
-    id: '005',
-    name: 'Game Store',
-    description: 'Digital storefront for Xbox games and gaming community.',
-    image: 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&q=80&w=2342',
-    link: 'https://suriyathiru68.github.io/Game-Store/',
-    tags: ['Frontend', 'React'],
-    size: 'wide'
   }
 ];
 
@@ -70,33 +70,37 @@ const Projects = () => {
         </motion.h2>
 
         {/* Main Grid with improved layout to prevent overlaps */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-2">
+        {/* Main Grid with improved layout to prevent overlaps */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
 
-          {/* Row 1: POPCORNIQ | AI Onboarding Agent | Philosophy Text */}
+          {/* Row 1: Cinematic (0) | Game Store (1) | Text */}
           <ProjectTile
             project={projects[0]}
-            className="md:col-span-4 h-[400px] md:h-[550px]"
+            className="md:col-span-4 h-[400px] md:h-[500px]"
             index={0}
           />
 
           <ProjectTile
             project={projects[1]}
-            className="md:col-span-4 h-[400px] md:h-[550px]"
+            className="md:col-span-4 h-[400px] md:h-[500px]"
             index={1}
           />
 
-          <div className="md:col-span-4 p-8 md:p-12 flex flex-col justify-center">
+          <div className="md:col-span-4 p-6 md:p-8 flex flex-col justify-center bg-zinc-900/50 rounded-lg border border-white/5">
             <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 1 }}
-              className="text-zinc-400 text-sm md:text-base leading-relaxed font-light font-sans tracking-wide"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-gray-300 text-lg leading-relaxed font-light"
             >
-              Each project is a conversation: a continuous exchange between idea and form, brand and audience, vision and detail. It is a process in which concepts evolve, shapes respond, and meaning emerges through clarity and refinement. Every element plays a role in this dialogue, contributing to a final result that is both intentional and expressive.
+              Building digital experiences that blend <span className="text-white font-medium">performance</span> with <span className="text-white font-medium">cinematic aesthetics</span>.
             </motion.p>
+            <p className="mt-4 text-sm text-gray-500">
+              Explore my latest work across full-stack development, AI, and IoT solutions.
+            </p>
           </div>
 
-          {/* Row 2: Public Toilet System (Wide) | Code Notify (Tall) */}
+          {/* Row 2: AI Onboarding (3) - Wide | Code Notify (2) - Tall Side */}
           <ProjectTile
             project={projects[3]}
             className="md:col-span-8 h-[350px] md:h-[500px]"
@@ -105,11 +109,11 @@ const Projects = () => {
 
           <ProjectTile
             project={projects[2]}
-            className="md:col-span-4 h-[450px] md:h-[800px] md:row-span-2"
+            className="md:col-span-4 h-[450px] md:h-[1020px] md:row-span-2"
             index={2}
           />
 
-          {/* Row 3: Game Store (Wide) */}
+          {/* Row 3: Public Toilet (4) - Wide */}
           <ProjectTile
             project={projects[4]}
             className="md:col-span-8 h-[350px] md:h-[500px]"

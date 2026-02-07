@@ -1,14 +1,35 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
   return (
     <section id="experience" className="py-20 lg:py-40 px-4 sm:px-6 lg:px-16">
-      <h2 className="text-6xl lg:text-8xl font-extrabold mb-16">Experience</h2>
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-6xl lg:text-8xl font-extrabold mb-16"
+      >
+        Experience
+      </motion.h2>
       <div className="max-w-4xl mx-auto">
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden lg:block" />
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden lg:block origin-top"
+          />
           {/* Experience 1 */}
-          <div className="relative flex flex-col lg:flex-row-reverse items-start lg:items-center gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative flex flex-col lg:flex-row-reverse items-start lg:items-center gap-8"
+          >
             <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 bg-indigo-500 text-white px-6 py-2 rounded-full font-semibold whitespace-nowrap z-10">
               2025
             </div>
@@ -20,10 +41,16 @@ const Experience = () => {
               </p>
             </div>
             <div className="hidden lg:block w-1/2"></div>
-          </div>
+          </motion.div>
 
           {/* Experience 2 */}
-          <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mt-8">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mt-8"
+          >
             <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 bg-indigo-500 text-white px-6 py-2 rounded-full font-semibold whitespace-nowrap z-10">
               2024
             </div>
@@ -35,7 +62,7 @@ const Experience = () => {
               </p>
             </div>
             <div className="hidden lg:block w-1/2"></div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

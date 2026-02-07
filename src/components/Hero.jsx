@@ -1,56 +1,68 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import portfolioImg from './assests/portfolio.png'; // Corrected path
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen bg-black flex items-center pt-20">
-      <div className="w-full h-screen relative flex items-center">
+    <section
+      id="home"
+      className="relative min-h-screen bg-black text-white overflow-hidden"
+    >
+      {/* HERO CONTENT */}
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-16 pt-40 grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
 
-        {/* Split Layout Container */}
-        <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex items-center gap-0">
+        {/* LEFT CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
+            Crafting<br />
+            high-quality<br />
+            Outcomes<br />
+            With <span className="text-indigo-500">Vision</span>
+          </h1>
 
-          {/* Left Side - Black background with headline overlapping onto image */}
-          <div className="w-full lg:w-[55%] relative z-20 pr-0 lg:pr-12">
+          <p className="mt-6 text-lg text-gray-300 max-w-xl">
+            <span className="text-white text-2xl font-semibold"> I’m Suriya</span>, a Computer
+            Science student passionate about building clean, responsive, and
+            user-focused web experiences.
+          </p>
 
-            {/* Main Headline - Extends over the image */}
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-8">
-              Crafting high-quality<br />
-              Outcomes With Vision
-            </h1>
-
-            <div className="space-y-2 mb-8">
-              <p className="text-lg text-white">
-                <span className="font-semibold">I'm Suriya</span>, A Computer Science student.
-              </p>
-              <p className="text-base text-gray-300">
-                I design and develop clean, responsive websites.
-              </p>
-            </div>
-
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-md transition-colors">
-              Reach Out
-              <ArrowRight className="w-4 h-4" />
-            </button>
+          {/* CTA */}
+          <div className="mt-8 flex items-center gap-6">
+            <a
+              href="#contact"
+              className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-medium transition"
+            >
+              Reach Out →
+            </a>
+            <a
+              href="#projects"
+              className="text-gray-300 hover:text-white transition"
+            >
+              View Projects
+            </a>
           </div>
+        </motion.div>
 
-          {/* Right Side - Image */}
-          <div className="hidden lg:block w-[45%] relative h-[600px] -ml-24">
-            <img
-              src="/src/components/assests/portfolio.jpeg"
-              alt="Suriya"
-              className="w-full h-full object-cover grayscale"
-            />
+        {/* RIGHT IMAGE */}
+        <div className="relative flex justify-center">
+          {/* Glow */}
+          <div className="absolute inset-0 bg-red-500/10 blur-3xl"></div>
 
-            {/* Text Overlay on Image */}
-            <div className="absolute bottom-8 right-8">
-              <p className="text-white text-sm font-light tracking-wide">
-                Designer. Developer. Dreamer.
-              </p>
-            </div>
-          </div>
-
+          <motion.img
+            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            src={portfolioImg}
+            alt="portfolio image"
+            className="relative z-10 max-w-md w-full"
+          />
         </div>
-
       </div>
     </section>
   );

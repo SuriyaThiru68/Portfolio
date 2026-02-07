@@ -8,14 +8,14 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import Reveal from './components/Reveal';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'expertise', 'skills', 'experience', 'projects', 'contact'];
+      const sections = ['home', 'about', 'expertise', 'skills', 'projects', 'experience', 'contact'];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       for (const section of sections) {
@@ -41,7 +41,9 @@ const App = () => {
       <Navbar activeSection={activeSection} />
       <main>
         <Hero />
-        <Marquee />
+        <Reveal width="100%">
+          <Marquee />
+        </Reveal>
         <Expertise />
         <About />
         <Skills />
@@ -49,7 +51,6 @@ const App = () => {
         <Experience />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 };
