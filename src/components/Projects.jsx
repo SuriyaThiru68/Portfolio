@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 // Importing assets - keeping your original paths
 import popcorniq from './assests/popcorniq.jpg';
 import codeNotify from './assests/code notify.jpg';
-import gamestore from './assests/game store.jpg';
-import iot from './assests/iot.png'
+import gamestore from './assests/gamestore.png';
+import iot from './assests/iot.jpg'
 import onboardingAgent from './assests/onboarding.png';
 
 const projects = [
@@ -19,25 +19,16 @@ const projects = [
     size: 'large'
   },
   {
-    id: '002',
-    name: 'Game Store',
-    description: 'Digital storefront for Xbox games and gaming community.',
-    image: 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&q=80&w=2342',
-    link: 'https://suriyathiru68.github.io/Game-Store/',
-    tags: ['Frontend', 'React'],
-    size: 'wide'
-  },
-  {
     id: '003',
     name: 'Code Notify',
     description: 'Real-time notification system for reliable event updates.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2340',
-    link: '#',
+    image: codeNotify,
+    link: 'https://code-events-track-coding-contests.vercel.app/',
     tags: ['Node.js', 'Real-time'],
     size: 'tall'
   },
   {
-    id: '004',
+    id: '002',
     name: 'AI Onboarding Agent',
     description: 'A full-stack AI-powered onboarding platform for vendors and distributors.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426',
@@ -46,10 +37,19 @@ const projects = [
     size: 'medium'
   },
   {
+    id: '004',
+    name: 'Game Store',
+    description: 'Digital storefront for Xbox games and gaming community.',
+    image: gamestore,
+    link: 'https://suriyathiru68.github.io/Game-Store/',
+    tags: ['Frontend', 'React'],
+    size: 'wide'
+  },
+  {
     id: '005',
     name: 'Public Toilet Feedback System',
     description: 'IoT-based hygiene alert system with Telegram integration.',
-    image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=2340',
+    image: iot,
     link: '',
     tags: ['IoT', 'Automation'],
     size: 'medium'
