@@ -17,7 +17,7 @@ const Navbar = ({ activeSection }) => {
 
           {/* Logo */}
           <div className="text-white text-sm font-semibold tracking-wider cursor-pointer">
-            LOGO
+            SURIYA
           </div>
 
           {/* Desktop Menu */}

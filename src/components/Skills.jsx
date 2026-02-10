@@ -26,7 +26,7 @@ const skills = [
 
   {
     category: 'Deployment & Hosting',
-    items: ['Vercel', 'Netlify', 'GitHub Pages']
+    items: ['Vercel', 'Render', 'Netlify', 'GitHub Pages']
   }
 
 ];

@@ -14,7 +14,7 @@ const projects = [
     name: 'Cinematic Movie Explorer',
     description: 'Full-stack movie discovery platform with cinematic UI and real-time data.',
     image: popcorniq,
-    link: 'https://popcorniq-pearl.vercel.app/',
+    link: 'https://popcorniq-moviewebsite.vercel.app/',
     tags: ['Frontend', 'React'],
     size: 'large'
   },
