@@ -16,9 +16,16 @@ const Navbar = ({ activeSection }) => {
         <div className="flex justify-between items-center py-6">
 
           {/* Logo */}
-          <div className="text-white text-sm font-semibold tracking-wider cursor-pointer">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+            className="text-white text-sm font-semibold tracking-wider cursor-pointer"
+          >
             SURIYA
-          </div>
+          </a>
 
           {/* Desktop Menu */}
           <ul className="hidden lg:flex gap-8 items-center">

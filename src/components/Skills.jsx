@@ -19,14 +19,12 @@ const skills = [
     items: ['Git', 'GitHub', 'VS Code', 'Jupyter Notebook', 'MongoDb Compass']
   },
   {
-    category: 'Design',
-    items: ['Figma', 'Framer', 'Affinity Designer', 'Photoshop', 'Canva']
-  },
-
-
-  {
     category: 'Deployment & Hosting',
     items: ['Vercel', 'Render', 'Netlify', 'GitHub Pages']
+  },
+  {
+    category: 'Design',
+    items: ['Figma', 'Framer', 'Affinity Designer', 'Photoshop', 'Canva']
   }
 
 ];
