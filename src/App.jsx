@@ -10,6 +10,8 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import Reveal from './components/Reveal';
+import Background from './components/Background';
+import Footer from './components/Footer';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -36,7 +38,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white overflow-x-hidden">
+    <div style={{ backgroundColor: 'var(--cream)', position: 'relative' }} className="overflow-x-hidden">
+      <Background />
       <CustomCursor />
       <Navbar activeSection={activeSection} />
       <main>
@@ -51,6 +54,7 @@ const App = () => {
         <Experience />
         <Contact />
       </main>
+      <Footer />
     </div>
   );
 };

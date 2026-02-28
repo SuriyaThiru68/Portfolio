@@ -1,62 +1,150 @@
 import React from 'react';
-import { ArrowRight, Code, Palette, Lightbulb, Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const expertiseItems = [
   {
-    icon: <Code className="w-12 h-12" />,
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <polyline points="6,12 12,6 18,12" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <polyline points="30,24 24,30 18,24" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="12" y1="6" x2="24" y2="30" stroke="#2b3fff" strokeWidth="2.5" strokeLinecap="round" />
+      </svg>
+    ),
     title: 'Web Development',
-    description: 'Building responsive, performant web applications with modern technologies and best practices.'
+    description: 'Building responsive, performant web applications with modern technologies — React, Node.js, REST APIs, and more.',
   },
   {
-    icon: <Palette className="w-12 h-12" />,
-    title: 'Designer',
-    description: 'Creating intuitive, beautiful interfaces that users love with attention to every detail.'
-  }
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="10" stroke="#1a1a1a" strokeWidth="2" fill="none" />
+        <circle cx="18" cy="18" r="4" fill="#2b3fff" />
+        <line x1="18" y1="4" x2="18" y2="8" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+        <line x1="18" y1="28" x2="18" y2="32" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+        <line x1="4" y1="18" x2="8" y2="18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+        <line x1="28" y1="18" x2="32" y2="18" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    title: 'UI/UX Design',
+    description: 'Creating intuitive, beautiful interfaces in Figma, Framer, and Affinity — where every pixel, interaction, and detail matters.',
+  },
 ];
 
 const Expertise = () => {
-  const handleHover = (isHover) => window.dispatchEvent(new CustomEvent('cursor-hover', { detail: isHover }));
-
   return (
-    <section id="expertise" className="py-32 px-4 sm:px-6 lg:px-16 bg-black">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+    <section
+      id="expertise"
+      style={{
+        backgroundColor: 'var(--cream-dark)',
+        borderTop: '1.5px solid rgba(26,26,26,0.1)',
+        borderBottom: '1.5px solid rgba(26,26,26,0.1)',
+        padding: '6rem 2rem',
+        fontFamily: "'Caveat', cursive",
+      }}
+    >
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
+
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ staggerChildren: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+          style={{
+            fontFamily: "'Caveat', cursive",
+            fontSize: '1rem',
+            fontWeight: 600,
+            letterSpacing: '0.14em',
+            color: 'var(--blue-accent)',
+            textTransform: 'uppercase',
+            marginBottom: '0.75rem',
+          }}
+        >
+          ✦ What I Do
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{
+            fontFamily: "'Caveat', cursive",
+            fontSize: 'clamp(2.8rem, 6vw, 4.8rem)',
+            fontWeight: 700,
+            color: 'var(--ink)',
+            marginBottom: '3rem',
+          }}
+        >
+          My Expertise
+        </motion.h2>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
+          }}
         >
           {expertiseItems.map((item, index) => (
             <motion.div
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              key={index}
-              className="group relative p-8 lg:p-12 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 hover:border-indigo-500/50 transition-all duration-500 overflow-hidden"
-              onMouseEnter={() => handleHover(true)}
-              onMouseLeave={() => handleHover(false)}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              whileHover={{ y: -4 }}
+              style={{
+                backgroundColor: 'var(--cream)',
+                border: '2px solid rgba(26,26,26,0.15)',
+                borderRadius: '4px',
+                padding: '2.5rem',
+                cursor: 'default',
+                transition: 'border-color 0.2s, box-shadow 0.2s',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--blue-accent)';
+                e.currentTarget.style.boxShadow = '4px 4px 0 var(--blue-accent)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(26,26,26,0.15)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Sketch corner decoration */}
+              <svg
+                style={{ position: 'absolute', top: 8, right: 8, opacity: 0.2 }}
+                width="28" height="28" viewBox="0 0 28 28" fill="none"
+              >
+                <path d="M14 2 L15.5 10 L24 14 L15.5 18 L14 26 L12.5 18 L4 14 L12.5 10 Z"
+                  stroke="#1a1a1a" strokeWidth="1.5" fill="none" />
+              </svg>
 
-              <div className="relative z-10">
-                <div className="text-indigo-500 mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                  {item.icon}
-                </div>
+              <div style={{ marginBottom: '1.5rem' }}>{item.icon}</div>
 
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">
-                  {item.title}
-                </h3>
-
-                <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                  {item.description}
-                </p>
-              </div>
+              <h3
+                style={{
+                  fontFamily: "'Caveat', cursive",
+                  fontSize: '1.8rem',
+                  fontWeight: 700,
+                  color: 'var(--ink)',
+                  marginBottom: '0.75rem',
+                }}
+              >
+                {item.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "'Caveat', cursive",
+                  fontSize: '1.2rem',
+                  color: 'var(--ink-light)',
+                  lineHeight: 1.6,
+                }}
+              >
+                {item.description}
+              </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

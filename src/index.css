@@ -1,6 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Permanent+Marker&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --cream: #f5f0e8;
+  --cream-dark: #ede8df;
+  --ink: #1a1a1a;
+  --ink-light: #3a3a3a;
+  --blue-accent: #001aff;
+  --blue-accent-hover: #203aff;
+}
+
+.font-sketch {
+  font-family: 'Caveat', cursive;
+}
+
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* Hide native cursor everywhere — custom cursor is used */
+html,
+body,
+* {
+  cursor: none !important;
+}
+
+/* All sections sit above the fixed background layer */
+main>section,
+nav {
+  position: relative;
+  z-index: 1;
+}
 
 /* Custom animations and utilities copied from the original file */
 @keyframes fadeInUp {
@@ -8,6 +41,7 @@
     opacity: 0;
     transform: translateY(100px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -15,12 +49,16 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(30px, -50px) scale(1.1);
   }
+
   66% {
     transform: translate(-30px, 30px) scale(0.9);
   }
@@ -30,6 +68,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -59,4 +98,121 @@
 
 .animate-scroll {
   animation: scroll 30s linear infinite;
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2) rotate(15deg);
+  }
+}
+
+@keyframes drawCircle {
+  from {
+    stroke-dashoffset: 1200;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes floatCircle {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes wiggleArrow {
+
+  0%,
+  100% {
+    transform: rotate(-10deg) translateX(0);
+  }
+
+  50% {
+    transform: rotate(-10deg) translateX(4px);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-sparkle-delay {
+  animation: sparkle 2s ease-in-out infinite 0.4s;
+}
+
+.animate-draw-circle {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: drawCircle 2s ease-out forwards;
+}
+
+.animate-float-circle {
+  animation: floatCircle 4s ease-in-out infinite;
+}
+
+.animate-wiggle-arrow {
+  animation: wiggleArrow 1.2s ease-in-out infinite;
+}
+
+.sketch-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.sketch-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--ink);
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+/* Custom cursor — replaced by inline styles in CustomCursor.jsx */
+.custom-cursor {
+  display: none;
+}
+
+/* Responsive modal grid */
+@media (max-width: 680px) {
+  .modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* About two-column responsive */
+@media (max-width: 700px) {
+  .grid-cols-1-md {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Year badge — hide absolute badge on small screens */
+@media (max-width: 640px) {
+  .year-badge-hidden {
+    display: none;
+  }
+
+  .hidden-on-mobile {
+    display: none !important;
+  }
 }
