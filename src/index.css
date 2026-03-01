@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ══════════════════════════════════════════
+   CSS VARIABLES
+══════════════════════════════════════════ */
 :root {
   --cream: #f5f0e8;
   --cream-dark: #ede8df;
@@ -13,6 +16,9 @@
   --blue-accent-hover: #203aff;
 }
 
+/* ══════════════════════════════════════════
+   FONT UTILITIES
+══════════════════════════════════════════ */
 .font-sketch {
   font-family: 'Caveat', cursive;
 }
@@ -21,21 +27,41 @@
   font-family: 'Permanent Marker', cursive;
 }
 
-/* Hide native cursor everywhere — custom cursor is used */
+/* ══════════════════════════════════════════
+   CURSOR — hide native, use custom
+══════════════════════════════════════════ */
 html,
 body,
 * {
   cursor: none !important;
 }
 
-/* All sections sit above the fixed background layer */
+@media (pointer: coarse) {
+
+  /* Re-enable native cursor on touch/mobile */
+  html,
+  body,
+  * {
+    cursor: auto !important;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Z-INDEX — sections above fixed bg
+══════════════════════════════════════════ */
 main>section,
 nav {
   position: relative;
   z-index: 1;
 }
 
-/* Custom animations and utilities copied from the original file */
+/* ══════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -72,32 +98,6 @@ nav {
   100% {
     transform: translateX(-50%);
   }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 1s forwards;
-  opacity: 0;
-}
-
-.delay-100 {
-  animation-delay: 0.2s;
-}
-
-.delay-200 {
-  animation-delay: 0.4s;
-}
-
-.animate-float {
-  animation: float 20s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 20s ease-in-out infinite;
-  animation-delay: 5s;
-}
-
-.animate-scroll {
-  animation: scroll 30s linear infinite;
 }
 
 @keyframes sparkle {
@@ -148,6 +148,34 @@ nav {
   }
 }
 
+/* ══════════════════════════════════════════
+   ANIMATION CLASSES
+══════════════════════════════════════════ */
+.animate-fadeInUp {
+  animation: fadeInUp 1s forwards;
+  opacity: 0;
+}
+
+.delay-100 {
+  animation-delay: 0.2s;
+}
+
+.delay-200 {
+  animation-delay: 0.4s;
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 20s ease-in-out infinite 5s;
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
 .animate-sparkle {
   animation: sparkle 2s ease-in-out infinite;
 }
@@ -170,6 +198,9 @@ nav {
   animation: wiggleArrow 1.2s ease-in-out infinite;
 }
 
+/* ══════════════════════════════════════════
+   SKETCH UNDERLINE
+══════════════════════════════════════════ */
 .sketch-underline {
   position: relative;
   display: inline-block;
@@ -187,32 +218,397 @@ nav {
   transform: rotate(-1deg);
 }
 
-/* Custom cursor — replaced by inline styles in CustomCursor.jsx */
-.custom-cursor {
-  display: none;
+/* ══════════════════════════════════════════
+   ABOUT GRID
+══════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
 }
 
-/* Responsive modal grid */
-@media (max-width: 680px) {
-  .modal-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* About two-column responsive */
-@media (max-width: 700px) {
-  .grid-cols-1-md {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Year badge — hide absolute badge on small screens */
+/* ══════════════════════════════════════════
+   SECTION BACKGROUND SVGs — reduce on mobile
+══════════════════════════════════════════ */
 @media (max-width: 640px) {
-  .year-badge-hidden {
+
+  /* Hide heavy decorative elements on small screens */
+  section>div[aria-hidden] svg:not(:first-child) {
     display: none;
   }
 
+  section>div[aria-hidden] svg:first-child {
+    opacity: 0.06 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   ──────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ──────────────────────────────────────────────────────
+══════════════════════════════════════════════════════ */
+
+/* ── LARGE TABLET (≤ 1024px) ── */
+@media (max-width: 1024px) {
+
+  /* Hero: shrink portrait image */
+  #home img {
+    max-width: 340px !important;
+    width: 80% !important;
+  }
+
+  #home .grid {
+    gap: 3rem !important;
+  }
+}
+
+/* ── TABLET (≤ 768px) ── */
+@media (max-width: 768px) {
+
+  /* ─ NAVBAR ─ */
+  nav>div {
+    padding: 0 1.25rem !important;
+  }
+
+  /* ─ HERO ─ */
+  #home {
+    padding: 1rem 1.25rem 3rem !important;
+    min-height: 100svh;
+  }
+
+  #home .relative.z-10 {
+    padding: 0 0.5rem !important;
+  }
+
+  #home .grid {
+    grid-template-columns: 1fr !important;
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+    gap: 2rem !important;
+    text-align: center;
+    justify-items: center;
+  }
+
+  /* Hide hero portrait image on tablet (shows only heading + CTA) */
+  #home .grid>div:last-child {
+    display: none;
+  }
+
+  /* ─ ABOUT ─ */
+  #about {
+    padding: 5rem 1.25rem !important;
+  }
+
+  #about>div {
+    padding: 0 !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* ─ SKILLS ─ */
+  #skills {
+    padding: 5rem 1.25rem !important;
+  }
+
+  #skills>div {
+    padding: 0 !important;
+  }
+
+  /* ─ EXPERTISE ─ */
+  #expertise {
+    padding: 4rem 1.25rem !important;
+  }
+
+  #expertise>div {
+    padding: 0 !important;
+  }
+
+  /* ─ PROJECTS ─ */
+  #projects {
+    padding-top: 4rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  #projects>div {
+    padding: 0 !important;
+  }
+
+  /* Project grid: 2 columns on tablet */
+  .project-tiles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Modal: full-screen on tablet */
+  .modal-grid {
+    grid-template-columns: 1fr !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+
+  /* ─ EXPERIENCE ─ */
+  #experience {
+    padding: 5rem 1.25rem !important;
+  }
+
+  #experience>div {
+    padding: 0 !important;
+  }
+
+  /* ─ CONTACT ─ */
+  #contact {
+    padding: 5rem 1.25rem 4rem !important;
+  }
+
+  /* ─ FOOTER ─ */
+  footer>div:first-child {
+    padding: 1.5rem 1.25rem !important;
+  }
+}
+
+/* ── MOBILE (≤ 640px) ── */
+@media (max-width: 640px) {
+
+  /* ─ NAVBAR ─ */
+  nav>div {
+    padding: 0 1rem !important;
+  }
+
+  /* ─ HERO ─ */
+  #home {
+    padding: 0.75rem 1rem 2rem !important;
+  }
+
+  #home h1 {
+    font-size: clamp(2rem, 9vw, 2.8rem) !important;
+    text-align: center;
+  }
+
+  #home p {
+    text-align: center !important;
+    font-size: 1rem !important;
+  }
+
+  #home .flex.gap-4,
+  #home .flex.gap-6 {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+  }
+
+  /* ─ ABOUT ─ */
+  #about {
+    padding: 4rem 1rem !important;
+  }
+
+  #about h2 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem) !important;
+  }
+
+  #about p {
+    font-size: clamp(1.1rem, 4vw, 1.3rem) !important;
+  }
+
+  /* Stats row: wrap on small */
+  #about>div>div>div:last-child {
+    gap: 1.5rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* ─ SKILLS ─ */
+  #skills {
+    padding: 4rem 1rem !important;
+  }
+
+  /* Skill cards — 2 columns on mobile */
+  #skills .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem !important;
+  }
+
+  #skills h2 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem) !important;
+  }
+
+  /* ─ EXPERTISE ─ */
+  #expertise {
+    padding: 3rem 1rem !important;
+  }
+
+  /* Expertise cards: 1 column */
+  #expertise .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* ─ PROJECTS ─ */
+  #projects {
+    padding-top: 3.5rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Project tiles: 1 column on mobile */
+  .project-tiles-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #projects h2 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem) !important;
+  }
+
+  /* ─ EXPERIENCE ─ */
+  #experience {
+    padding: 4rem 1rem !important;
+  }
+
+  #experience h2 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem) !important;
+  }
+
+  /* Experience cards: full width */
+  .exp-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .exp-row {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  /* Hide timeline line and year badges on mobile */
+  .year-badge-hidden,
   .hidden-on-mobile {
     display: none !important;
+  }
+
+  /* ─ CONTACT ─ */
+  #contact {
+    padding: 4rem 1rem 3.5rem !important;
+  }
+
+  #contact h2 {
+    font-size: clamp(2.4rem, 10vw, 3.5rem) !important;
+  }
+
+  /* Break long email addresses */
+  #contact a[href^="mailto"] {
+    word-break: break-all;
+    font-size: 1rem !important;
+  }
+
+  /* Social links: smaller gap */
+  #contact .flex {
+    gap: 1.2rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* ─ FOOTER ─ */
+  /* Name block — scale down giant text */
+  footer .font-marker,
+  footer [style*="Permanent Marker"] {
+    font-size: clamp(3.5rem, 18vw, 7rem) !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* CTA bar — stack vertically */
+  footer>div {
+    flex-direction: column !important;
+  }
+
+  /* Credits bar — center & stack */
+  footer>div:last-child {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  footer>div>div {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.8rem !important;
+  }
+
+  /* Nav links in footer: wrap */
+  footer ul {
+    flex-wrap: wrap !important;
+    gap: 0.8rem 1.4rem !important;
+  }
+
+  /* ─ LOADING SCREEN ─ */
+  .loader-name-letter {
+    font-size: clamp(3rem, 16vw, 6rem) !important;
+  }
+}
+
+/* ── SMALL MOBILE (≤ 480px) ── */
+@media (max-width: 480px) {
+
+  /* Hero — tighter */
+  #home {
+    padding: 0.5rem 0.75rem 1.5rem !important;
+  }
+
+  /* About */
+  #about {
+    padding: 3.5rem 0.75rem !important;
+  }
+
+  /* Skills */
+  #skills {
+    padding: 3.5rem 0.75rem !important;
+  }
+
+  /* 2 columns still fine; reduce card padding */
+  #skills .grid>div {
+    padding: 0.8rem !important;
+  }
+
+  /* Expertise */
+  #expertise {
+    padding: 2.5rem 0.75rem !important;
+  }
+
+  /* Experience */
+  #experience {
+    padding: 3.5rem 0.75rem !important;
+  }
+
+  /* Projects */
+  #projects {
+    padding-top: 3rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Contact */
+  #contact {
+    padding: 3.5rem 0.75rem 3rem !important;
+  }
+
+  /* About stats — stack in a 2-col grid */
+  #about .stat-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.2rem !important;
+  }
+}
+
+/* ── LANDSCAPE SMALL SCREENS ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  #home {
+    min-height: auto !important;
+    padding: 5rem 1.5rem 2rem !important;
+  }
+
+  #home .grid {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ContactBg } from './SectionBackgrounds';
 
 const socials = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/suriyathiruppathy/' },
@@ -13,13 +14,16 @@ const Contact = () => {
     <section
       id="contact"
       style={{
-        backgroundColor: 'var(--cream-dark)',
+        backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         padding: '7rem 2rem 5rem',
         fontFamily: "'Caveat', cursive",
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      <ContactBg />
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
 
         {/* Label */}

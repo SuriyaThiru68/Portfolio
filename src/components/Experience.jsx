@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ExperienceBg } from './SectionBackgrounds';
 
 const experiences = [
   {
@@ -23,12 +24,15 @@ const Experience = () => {
     <section
       id="experience"
       style={{
-        backgroundColor: 'var(--cream)',
+        backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         padding: '7rem 2rem',
         fontFamily: "'Caveat', cursive",
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      <ExperienceBg />
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
 
         <motion.p
@@ -94,6 +98,7 @@ const Experience = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: index * 0.2 }}
+                className="exp-row"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -126,6 +131,7 @@ const Experience = () => {
 
                 {/* Card */}
                 <div
+                  className="exp-card"
                   style={{
                     width: '46%',
                     backgroundColor: 'var(--cream-dark)',

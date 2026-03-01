@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SkillsBg } from './SectionBackgrounds';
 
 const skills = [
   {
@@ -43,12 +44,15 @@ const Skills = () => {
     <section
       id="skills"
       style={{
-        backgroundColor: 'var(--cream)',
+        backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         padding: '7rem 2rem',
         fontFamily: "'Caveat', cursive",
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      <SkillsBg />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
 
         <motion.p

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Calendar, Tag } from 'lucide-react';
+import { ProjectsBg } from './SectionBackgrounds';
 
 // Importing assets
 import popcorniq from './assests/popcorniq.jpg';
@@ -119,20 +120,6 @@ const ProjectTile = ({ project, className, index, onClick }) => (
       className="absolute inset-0 z-10 flex flex-col justify-end"
       style={{ padding: '1.5rem 2rem' }}
     >
-      {/* Project ID badge */}
-      <span
-        style={{
-          fontFamily: "'Caveat', cursive",
-          fontSize: '0.85rem',
-          fontWeight: 700,
-          color: 'rgba(245,240,232,0.5)',
-          letterSpacing: '0.12em',
-          marginBottom: '0.4rem',
-        }}
-      >
-        {project.id}
-      </span>
-
       <h3
         style={{
           fontFamily: "'Caveat', cursive",
@@ -358,12 +345,14 @@ const Projects = () => {
       style={{
         paddingTop: '5rem',
         paddingBottom: '2.5rem',
-        backgroundColor: 'var(--cream-dark)',
+        backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         overflow: 'hidden',
         fontFamily: "'Caveat', cursive",
+        position: 'relative',
       }}
     >
+      <ProjectsBg />
       <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '0 1rem' }}>
 
         {/* Section label */}
@@ -406,7 +395,7 @@ const Projects = () => {
         </motion.h2>
 
         {/* ── Bento Grid — same layout as original ── */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 project-tiles-grid">
 
           {/* [0] large — col-span-4 */}
           <ProjectTile

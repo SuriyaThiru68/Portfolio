@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import portfolioImg from './assests/portfolio.png';
+import { HeroBg } from './SectionBackgrounds';
 
 const Hero = () => {
   const circleRef = useRef(null);
@@ -8,9 +9,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      style={{ backgroundColor: 'var(--cream)', fontFamily: "'Caveat', cursive" }}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ position: 'relative', backgroundColor: 'transparent', fontFamily: "'Caveat', cursive", overflow: 'hidden' }}
+      className="min-h-screen flex items-center"
     >
+      <HeroBg />
       {/* Subtle paper texture overlay */}
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"

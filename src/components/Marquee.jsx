@@ -10,7 +10,7 @@ const Marquee = () => {
         borderBottom: '1.5px solid rgba(26,26,26,0.12)',
         overflow: 'hidden',
         padding: '1.2rem 0',
-        backgroundColor: 'var(--cream-dark)',
+        backgroundColor: 'transparent',
       }}
     >
       <div className="flex whitespace-nowrap animate-scroll">

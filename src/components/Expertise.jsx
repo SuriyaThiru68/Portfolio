@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ExpertiseBg } from './SectionBackgrounds';
 
 const expertiseItems = [
   {
@@ -34,13 +35,16 @@ const Expertise = () => {
     <section
       id="expertise"
       style={{
-        backgroundColor: 'var(--cream-dark)',
+        backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         borderBottom: '1.5px solid rgba(26,26,26,0.1)',
         padding: '6rem 2rem',
         fontFamily: "'Caveat', cursive",
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      <ExpertiseBg />
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
 
         <motion.p
