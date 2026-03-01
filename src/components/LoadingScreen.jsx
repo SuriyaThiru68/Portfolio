@@ -132,6 +132,22 @@ const LoadingScreen = ({ onComplete }) => {
                             stroke="#f5f0e8" strokeWidth="2" strokeLinecap="round" fill="none" />
                     </svg>
 
+                    {/* ── Logo mark ── */}
+                    <motion.img
+                        src="/logo.png"
+                        alt="Suriya T"
+                        initial={{ opacity: 0, scale: 0.6, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        style={{
+                            height: 'clamp(70px, 14vw, 110px)',
+                            width: 'auto',
+                            marginBottom: '0.8rem',
+                            mixBlendMode: 'screen',
+                            filter: 'drop-shadow(0 0 20px rgba(0,26,255,0.6))',
+                        }}
+                    />
+
                     {/* ── Animated name letters — drop in ── */}
                     <div style={{ display: 'flex', gap: '0.02em', marginBottom: '1.2rem', overflow: 'hidden' }}>
                         {letters.map((l, i) => (

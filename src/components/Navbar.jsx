@@ -37,19 +37,28 @@ const Navbar = ({ activeSection }) => {
             <button
               onClick={() => scrollToSection('home')}
               style={{
-                fontFamily: "'Permanent Marker', cursive",
-                fontSize: '1.4rem',
-                color: 'var(--ink)',
                 background: 'none',
                 border: 'none',
-                letterSpacing: '-0.02em',
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              ST
+              <img
+                src="/logo.png"
+                alt="Suriya T logo"
+                style={{
+                  height: '42px',
+                  width: 'auto',
+                  display: 'block',
+                  mixBlendMode: 'multiply',
+                  filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.85))',
+                }}
+              />
             </button>
 
             {/* ── DESKTOP NAV LINKS ── */}
-            <ul className="hidden lg:flex" style={{ display: 'flex', gap: '2.5rem', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
+            <ul className="hidden lg:flex" style={{ gap: '2.5rem', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
               {navItems.map(({ label, id }) => {
                 const isActive = activeSection === id;
                 return (
@@ -112,7 +121,6 @@ const Navbar = ({ activeSection }) => {
                   background: 'none',
                   border: 'none',
                   padding: '6px',
-                  display: 'flex',
                   flexDirection: 'column',
                   gap: '5px',
                   alignItems: 'center',

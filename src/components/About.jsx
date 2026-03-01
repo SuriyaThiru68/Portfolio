@@ -15,8 +15,8 @@ const ScrollWord = ({ word, start, end, scrollYProgress, highlight }) => {
     [start, end],
     ['blur(5px)', 'blur(0px)']
   );
-  const opacity = useSpring(rawOpacity, { stiffness: 100, damping: 22 });
-  const y = useSpring(rawY, { stiffness: 100, damping: 22 });
+  const opacity = useSpring(rawOpacity, { stiffness: 260, damping: 28 });
+  const y = useSpring(rawY, { stiffness: 260, damping: 28 });
 
   return (
     <motion.span
@@ -78,8 +78,8 @@ const ScrollTextBlock = ({
 const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
   const rawOpacity = useTransform(scrollYProgress, [rangeStart, rangeEnd], [0, 1]);
   const rawY = useTransform(scrollYProgress, [rangeStart, rangeEnd], [22, 0]);
-  const opacity = useSpring(rawOpacity, { stiffness: 90, damping: 20 });
-  const y = useSpring(rawY, { stiffness: 90, damping: 20 });
+  const opacity = useSpring(rawOpacity, { stiffness: 260, damping: 28 });
+  const y = useSpring(rawY, { stiffness: 260, damping: 28 });
 
   return (
     <motion.div style={{ borderLeft: '3px solid var(--ink)', paddingLeft: '1.2rem', opacity, y }}>
@@ -111,8 +111,8 @@ const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
    Divider
 ───────────────────────────────────────────────────── */
 const ScrollDivider = ({ scrollYProgress }) => {
-  const scaleX = useTransform(scrollYProgress, [0.17, 0.27], [0, 1]);
-  const opacity = useTransform(scrollYProgress, [0.17, 0.27], [0, 1]);
+  const scaleX = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
 
   return (
     <motion.div style={{ transformOrigin: 'left', scaleX, opacity, marginBottom: '3rem' }}>
@@ -140,7 +140,7 @@ const About = () => {
   // end:   when section bottom hits 50% of viewport
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 0.92', 'end 0.10'],   // ← wider range = slower reveal
+    offset: ['start 0.85', 'end 0.40'],   // ← tighter range = faster reveal
   });
 
   const para1Words =
@@ -218,7 +218,7 @@ const About = () => {
           <ScrollTextBlock
             words={headingWords}
             rangeStart={0.01}
-            rangeEnd={0.17}
+            rangeEnd={0.13}
             scrollYProgress={scrollYProgress}
             Tag="span"
             style={{ display: 'contents' }}
@@ -231,11 +231,11 @@ const About = () => {
         {/* ── Two-column paragraphs ── */}
         <div className="about-grid">
 
-          {/* scroll range 0.27 → 0.60 */}
+          {/* scroll range 0.22 → 0.50 */}
           <ScrollTextBlock
             words={para1Words}
-            rangeStart={0.27}
-            rangeEnd={0.60}
+            rangeStart={0.22}
+            rangeEnd={0.50}
             scrollYProgress={scrollYProgress}
             highlights={para1Highlights}
             style={{
@@ -245,11 +245,11 @@ const About = () => {
             }}
           />
 
-          {/* scroll range 0.44 → 0.80 */}
+          {/* scroll range 0.36 → 0.68 */}
           <ScrollTextBlock
             words={para2Words}
-            rangeStart={0.44}
-            rangeEnd={0.80}
+            rangeStart={0.36}
+            rangeEnd={0.68}
             scrollYProgress={scrollYProgress}
             highlights={para2Highlights}
             style={{
@@ -268,8 +268,8 @@ const About = () => {
               num={num}
               label={label}
               scrollYProgress={scrollYProgress}
-              rangeStart={0.82 + i * 0.05}
-              rangeEnd={0.89 + i * 0.05}
+              rangeStart={0.70 + i * 0.05}
+              rangeEnd={0.78 + i * 0.05}
             />
           ))}
         </div>
