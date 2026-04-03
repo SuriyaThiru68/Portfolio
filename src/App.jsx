@@ -14,6 +14,7 @@ import Reveal from './components/Reveal';
 import Background from './components/Background';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import { ReactLenis } from '@studio-freight/react-lenis';
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,7 +42,7 @@ const App = () => {
   }, [isLoaded]);
 
   return (
-    <>
+    <ReactLenis root options={{ lerp: 0.05, duration: 1.5, smoothWheel: true }}>
       <LoadingScreen onComplete={() => setIsLoaded(true)} />
 
       <AnimatePresence>
@@ -52,7 +53,7 @@ const App = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             style={{ position: 'relative' }}
-            className="overflow-x-hidden"
+            className="overflow-clip"
           >
             <Background />
             <CustomCursor />
@@ -73,8 +74,10 @@ const App = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </ReactLenis>
   );
 };
 
 export default App;
+
+

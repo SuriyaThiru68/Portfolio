@@ -30,3 +30,5 @@ const Reveal = ({ children, width = "fit-content" }) => {
 };
 
 export default Reveal;
+
+

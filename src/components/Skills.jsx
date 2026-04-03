@@ -1,170 +1,83 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SkillsBg } from './SectionBackgrounds';
 
-const skills = [
+const skillCategories = [
   {
-    category: 'Programming',
-    items: ['Python', 'Java', 'C'],
+    title: 'FRONTEND',
+    skills: ['TypeScript', 'JavaScript', 'React.js', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'HTML & CSS']
   },
   {
-    category: 'Web Dev',
-    items: ['HTML & CSS', 'Tailwind CSS', 'JavaScript', 'React', 'Bootstrap'],
+    title: 'BACKEND',
+    skills: ['Node.js', 'Python', 'Java', 'C', 'SQL', 'MongoDB', 'REST APIs', 'FastAPI']
   },
   {
-    category: 'Databases',
-    items: ['SQL', 'MongoDB'],
-  },
-  {
-    category: 'Tools',
-    items: ['Git', 'GitHub', 'VS Code', 'Jupyter Notebook', 'MongoDB Compass'],
-  },
-  {
-    category: 'Deployment',
-    items: ['Vercel', 'Render', 'Netlify', 'GitHub Pages'],
-  },
-  {
-    category: 'Design',
-    items: ['Figma', 'Framer', 'Affinity Designer', 'Photoshop', 'Canva'],
-  },
+    title: 'TOOLS',
+    skills: ['Git & GitHub', 'VS Code', 'Figma', 'Vercel', 'Postman', 'Docker']
+  }
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 const Skills = () => {
   return (
-    <section
-      id="skills"
-      style={{
-        backgroundColor: 'transparent',
-        borderTop: '1.5px solid rgba(26,26,26,0.1)',
-        padding: '7rem 2rem',
-        fontFamily: "'Caveat', cursive",
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <SkillsBg />
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+    <section id="skills" className="relative py-28 bg-[#0B0B0C] text-[#FFFFFF] overflow-hidden font-sans">
+      <div className="absolute top-1/4 -right-64 w-[800px] h-[800px] bg-[#00E5FF]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-64 w-[600px] h-[600px] bg-[#00E5FF]/5 rounded-full blur-[150px] pointer-events-none" />
 
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: '1rem',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            color: 'var(--blue-accent)',
-            textTransform: 'uppercase',
-            marginBottom: '0.75rem',
-          }}
-        >
-          ✦ Toolkit
-        </motion.p>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-            fontWeight: 700,
-            color: 'var(--ink)',
-            marginBottom: '1rem',
-            lineHeight: 1.1,
-          }}
+          className="text-center mb-24"
         >
-          Skills
-        </motion.h2>
+          <span className="text-[#00E5FF] font-semibold tracking-widest text-sm uppercase drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">
+            ✦ Expertise
+          </span>
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mt-4 tracking-tight">Skills & Tech Stack</h2>
+        </motion.div>
 
-        {/* Hand-drawn underline */}
-        <svg width="140" height="10" viewBox="0 0 140 10" fill="none" style={{ marginBottom: '3.5rem' }}>
-          <path d="M2 5 Q35 1 70 5 Q105 9 138 5" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round" fill="none" />
-        </svg>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -4 }}
-              style={{
-                backgroundColor: 'var(--cream-dark)',
-                border: '2px solid rgba(26,26,26,0.14)',
-                borderRadius: '4px',
-                padding: '1.8rem 2rem',
-                transition: 'border-color 0.2s, box-shadow 0.2s',
-                cursor: 'default',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--blue-accent)';
-                e.currentTarget.style.boxShadow = '4px 4px 0 var(--blue-accent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(26,26,26,0.14)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 lg:gap-24">
+          {skillCategories.map((category, idx) => (
+            <motion.div 
+              key={category.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              className="flex flex-col"
             >
-              <h3
-                style={{
-                  fontFamily: "'Caveat', cursive",
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: 'var(--blue-accent)',
-                  marginBottom: '1rem',
-                  borderBottom: '1.5px dashed rgba(26,26,26,0.2)',
-                  paddingBottom: '0.6rem',
-                }}
-              >
-                {skill.category}
+              <h3 className="text-lg md:text-xl font-semibold mb-6 md:mb-8 text-[#FFFFFF] flex items-center gap-4 border-b border-[#1A1A1D] pb-5 tracking-wide">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#00E5FF] shadow-[0_0_15px_rgba(0,229,255,0.9)]"></span>
+                {category.title}
               </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {skill.items.map((item, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      fontFamily: "'Caveat', cursive",
-                      fontSize: '1.2rem',
-                      color: 'var(--ink-light)',
-                      padding: '0.25rem 0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
+              
+              <div className="flex flex-wrap gap-3 md:gap-4">
+                {category.skills.map((skill) => (
+                  <motion.div
+                    key={skill}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -2,
+                      borderColor: 'rgba(0,229,255,0.6)',
+                      boxShadow: '0 0 25px rgba(0,229,255,0.3)',
+                      backgroundColor: 'rgba(0,229,255,0.08)'
                     }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/5 bg-[#1A1A1D] text-[#EAEAEA] text-xs md:text-base font-medium transition-colors cursor-default"
                   >
-                    <span style={{ color: 'var(--ink)', fontSize: '0.6rem', marginTop: '2px' }}>●</span>
-                    {item}
-                  </li>
+                    {skill}
+                  </motion.div>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Skills;
+
+

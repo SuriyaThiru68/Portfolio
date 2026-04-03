@@ -2,11 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { AboutBg } from './SectionBackgrounds';
 
-/* ─────────────────────────────────────────────────────
-   Single word that reveals as you scroll.
-   `start` / `end` are [0..1] fractions of the
-   section's scroll range.
-───────────────────────────────────────────────────── */
+
 const ScrollWord = ({ word, start, end, scrollYProgress, highlight }) => {
   const rawOpacity = useTransform(scrollYProgress, [start, end], [0, 1]);
   const rawY = useTransform(scrollYProgress, [start, Math.min(end, 1)], [16, 0]);
@@ -34,10 +30,7 @@ const ScrollWord = ({ word, start, end, scrollYProgress, highlight }) => {
   );
 };
 
-/* ─────────────────────────────────────────────────────
-   Block of text (heading or paragraph) where every word
-   gets its own scroll-progress window.
-───────────────────────────────────────────────────── */
+
 const ScrollTextBlock = ({
   words,
   rangeStart,
@@ -72,9 +65,7 @@ const ScrollTextBlock = ({
   );
 };
 
-/* ─────────────────────────────────────────────────────
-   Stat card — driven by scroll
-───────────────────────────────────────────────────── */
+
 const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
   const rawOpacity = useTransform(scrollYProgress, [rangeStart, rangeEnd], [0, 1]);
   const rawY = useTransform(scrollYProgress, [rangeStart, rangeEnd], [22, 0]);
@@ -85,7 +76,7 @@ const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
     <motion.div style={{ borderLeft: '3px solid var(--ink)', paddingLeft: '1.2rem', opacity, y }}>
       <div
         style={{
-          fontFamily: "'Permanent Marker', cursive",
+          fontFamily: "'Sulphur Point', sans-serif",
           fontSize: '2.5rem',
           color: 'var(--ink)',
           lineHeight: 1,
@@ -95,7 +86,7 @@ const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
       </div>
       <div
         style={{
-          fontFamily: "'Caveat', cursive",
+          fontFamily: "'Sulphur Point', sans-serif",
           fontSize: '1.1rem',
           color: 'var(--ink-light)',
           marginTop: '0.3rem',
@@ -107,9 +98,7 @@ const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
   );
 };
 
-/* ─────────────────────────────────────────────────────
-   Divider
-───────────────────────────────────────────────────── */
+
 const ScrollDivider = ({ scrollYProgress }) => {
   const scaleX = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
   const opacity = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
@@ -119,7 +108,7 @@ const ScrollDivider = ({ scrollYProgress }) => {
       <svg width="220" height="12" viewBox="0 0 220 12" fill="none">
         <path
           d="M2 6 Q55 2 110 6 Q165 10 218 6"
-          stroke="#1a1a1a"
+          stroke="#ffffff"
           strokeWidth="2"
           strokeLinecap="round"
           fill="none"
@@ -129,18 +118,13 @@ const ScrollDivider = ({ scrollYProgress }) => {
   );
 };
 
-/* ─────────────────────────────────────────────────────
-   MAIN ABOUT COMPONENT
-───────────────────────────────────────────────────── */
+
 const About = () => {
   const sectionRef = useRef(null);
 
-  // scroll progress tied strictly to this section
-  // start: when section top hits 85% of viewport
-  // end:   when section bottom hits 50% of viewport
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 0.85', 'end 0.40'],   // ← tighter range = faster reveal
+    offset: ['start 0.85', 'end 0.40'],   
   });
 
   const para1Words =
@@ -174,7 +158,7 @@ const About = () => {
         backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         padding: '7rem 2rem',
-        fontFamily: "'Caveat', cursive",
+        fontFamily: "'Sulphur Point', sans-serif",
         overflow: 'hidden',
         position: 'relative',
       }}
@@ -182,14 +166,13 @@ const About = () => {
       <AboutBg />
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
 
-        {/* ── Label ── */}
         <motion.p
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.55 }}
           style={{
-            fontFamily: "'Caveat', cursive",
+            fontFamily: "'Sulphur Point', sans-serif",
             fontSize: '1rem',
             fontWeight: 600,
             letterSpacing: '0.14em',
@@ -201,10 +184,9 @@ const About = () => {
           ✦ About Me
         </motion.p>
 
-        {/* ── "Who I Am" — 3 words, scroll range 0.01 → 0.17 ── */}
         <h2
           style={{
-            fontFamily: "'Caveat', cursive",
+            fontFamily: "'Sulphur Point', sans-serif",
             fontSize: 'clamp(3rem, 7vw, 5.5rem)',
             fontWeight: 700,
             color: 'var(--ink)',
@@ -225,13 +207,10 @@ const About = () => {
           />
         </h2>
 
-        {/* ── Divider ── */}
         <ScrollDivider scrollYProgress={scrollYProgress} />
 
-        {/* ── Two-column paragraphs ── */}
         <div className="about-grid">
 
-          {/* scroll range 0.22 → 0.50 */}
           <ScrollTextBlock
             words={para1Words}
             rangeStart={0.22}
@@ -239,13 +218,12 @@ const About = () => {
             scrollYProgress={scrollYProgress}
             highlights={para1Highlights}
             style={{
-              fontFamily: "'Caveat', cursive",
+              fontFamily: "'Sulphur Point', sans-serif",
               fontSize: 'clamp(1.2rem, 2.2vw, 1.55rem)',
               color: 'var(--ink-light)',
             }}
           />
 
-          {/* scroll range 0.36 → 0.68 */}
           <ScrollTextBlock
             words={para2Words}
             rangeStart={0.36}
@@ -253,14 +231,13 @@ const About = () => {
             scrollYProgress={scrollYProgress}
             highlights={para2Highlights}
             style={{
-              fontFamily: "'Caveat', cursive",
+              fontFamily: "'Sulphur Point', sans-serif",
               fontSize: 'clamp(1.2rem, 2.2vw, 1.55rem)',
               color: 'var(--ink-light)',
             }}
           />
         </div>
 
-        {/* ── Stats ── */}
         <div style={{ display: 'flex', gap: '3rem', marginTop: '4rem', flexWrap: 'wrap' }}>
           {stats.map(({ num, label }, i) => (
             <ScrollStat
@@ -280,3 +257,5 @@ const About = () => {
 };
 
 export default About;
+
+

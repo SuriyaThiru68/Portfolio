@@ -1,483 +1,154 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Calendar, Tag } from 'lucide-react';
-import { ProjectsBg } from './SectionBackgrounds';
 
-// Importing assets
 import popcorniq from './assests/popcorniq.jpg';
 import codeNotify from './assests/code notify.jpg';
 import gamestore from './assests/gamestore.png';
+import onboardingagent from './assests/onboardingagent.png'
 import iot from './assests/iot.jpg';
 
 const projects = [
   {
-    id: '001',
-    name: 'Cinematic Movie Explorer',
-    description: 'Full-stack movie discovery platform with cinematic UI and real-time data.',
-    fullDescription:
-      'A comprehensive movie discovery platform featuring a stunning cinematic interface, real-time data from TMDB API, advanced search and filtering capabilities, personalised watchlists, and responsive design optimised for all devices. Built with React, Node.js, and modern web technologies.',
+    id: '01',
+    title: 'CINEMATIC MOVIE EXPLORER',
+    subtitle: 'Personal Project / Full Stack',
+    description: 'A comprehensive movie discovery platform featuring a stunning cinematic interface, real-time data from TMDB API, advanced search and filtering, and personalized watchlists.',
     image: popcorniq,
     link: 'https://popcorniq-moviewebsite.vercel.app/',
-    tags: ['React', 'Node.js', 'TMDB API', 'Responsive'],
-    date: 'Jan 2024',
-    size: 'large',
-    features: ['Real-time movie data integration', 'Advanced search and filtering', 'User watchlist management', 'Responsive cinematic design', 'Performance optimised'],
   },
   {
-    id: '003',
-    name: 'Code Notify',
-    description: 'Real-time notification system for reliable event updates.',
-    fullDescription:
-      'An intelligent notification system that tracks coding contests and events across multiple platforms. Features real-time alerts, email notifications, contest calendar, and platform integration with LeetCode, Codeforces, and HackerRank.',
+    id: '02',
+    title: 'CODE NOTIFY',
+    subtitle: 'Automation Tool / Backend',
+    description: 'An intelligent notification system that tracks coding contests across multiple platforms with real-time email alerts, calendar integration, and automated reminders.',
     image: codeNotify,
     link: 'https://code-events-track-coding-contests.vercel.app/',
-    tags: ['Node.js', 'Real-time', 'Email API', 'Automation'],
-    date: 'Dec 2023',
-    size: 'tall',
-    features: ['Multi-platform contest tracking', 'Real-time email notifications', 'Calendar integration', 'Automated contest reminders', 'User preference management'],
   },
   {
-    id: '002',
-    name: 'AI Onboarding Agent',
-    description: 'A full-stack AI-powered onboarding platform for vendors and distributors.',
-    fullDescription:
-      'Revolutionary AI-powered onboarding system that streamlines vendor and distributor registration. Features intelligent form filling, document verification, automated KYC processing, real-time chat support, and comprehensive analytics dashboard.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426',
+    id: '03',
+    title: 'AI ONBOARDING AGENT',
+    subtitle: 'AI & Full Stack',
+    description: 'Revolutionary AI-powered onboarding system that streamlines vendor registration. Features intelligent form filling, document verification, and automated KYC processing.',
+    image: onboardingagent,
     link: 'https://ai-onboarding-agent.vercel.app/',
-    tags: ['React', 'Python', 'AI', 'FastAPI'],
-    date: 'Feb 2024',
-    size: 'medium',
-    features: ['AI-powered chat assistant', 'Automated document processing', 'Smart form completion', 'Real-time verification', 'Analytics dashboard'],
   },
   {
-    id: '004',
-    name: 'Game Store',
-    description: 'Digital storefront for Xbox games and gaming community.',
-    fullDescription:
-      'A modern e-commerce platform for digital games featuring a sleek UI, game catalog with detailed information, user reviews and ratings, shopping cart functionality, and Xbox Game Pass integration.',
+    id: '04',
+    title: 'GAME STORE',
+    subtitle: 'E-commerce Platform',
+    description: 'A modern digital storefront for Xbox games featuring a sleek UI, interactive game catalog, shopping cart functionality, and detailed user reviews.',
     image: gamestore,
     link: 'https://suriyathiru68.github.io/Game-Store/',
-    tags: ['React', 'E-commerce', 'Gaming', 'UI/UX'],
-    date: 'Nov 2023',
-    size: 'wide',
-    features: ['Interactive game catalog', 'Advanced filtering system', 'Shopping cart & checkout', 'User reviews & ratings', 'Xbox Game Pass integration'],
   },
   {
-    id: '005',
-    name: 'Public Toilet Feedback System',
-    description: 'IoT-based hygiene alert system with Telegram integration.',
-    fullDescription:
-      'An innovative IoT solution for public restroom maintenance featuring real-time hygiene monitoring, automated Telegram alerts, sensor-based data collection, maintenance tracking dashboard, and analytics for facility management.',
+    id: '05',
+    title: 'PUBLIC TOILET SYSTEM',
+    subtitle: 'IoT Solution',
+    description: 'An innovative IoT solution for public restroom maintenance featuring real-time hygiene monitoring, automated Telegram alerts, and an analytics dashboard.',
     image: iot,
     link: '',
-    tags: ['IoT', 'Python', 'Telegram Bot', 'Sensors'],
-    date: 'Oct 2023',
-    size: 'medium',
-    features: ['Real-time sensor monitoring', 'Automated Telegram notifications', 'Hygiene score tracking', 'Maintenance scheduling', 'Analytics dashboard'],
   },
 ];
 
-/* ─── Bento Tile ─── */
-const ProjectTile = ({ project, className, index, onClick }) => (
-  <motion.div
-    onClick={onClick}
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.9, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    whileHover={{ scale: 1.02 }}
-    className={`group relative overflow-hidden cursor-pointer ${className}`}
-    style={{
-      backgroundColor: 'var(--ink)',
-      border: '2px solid rgba(245,240,232,0.08)',
-    }}
-  >
-    {/* Photo layer */}
-    <motion.div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
-      <img
-        src={project.image}
-        alt={project.name}
-        className="w-full h-full object-cover"
-        style={{
-          filter: 'sepia(20%) contrast(1.08) brightness(0.55)',
-          transition: 'filter 1s ease',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.filter = 'sepia(10%) contrast(1.08) brightness(0.72)')}
-        onMouseLeave={(e) => (e.currentTarget.style.filter = 'sepia(20%) contrast(1.08) brightness(0.55)')}
-      />
-      {/* Gradient — cream-toned instead of pure black */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to top, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.4) 50%, transparent 100%)',
-        }}
-      />
-    </motion.div>
-
-    {/* Text overlay */}
-    <div
-      className="absolute inset-0 z-10 flex flex-col justify-end"
-      style={{ padding: '1.5rem 2rem' }}
-    >
-      <h3
-        style={{
-          fontFamily: "'Caveat', cursive",
-          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
-          fontWeight: 700,
-          color: 'var(--cream)',
-          lineHeight: 1.1,
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {project.name}
-      </h3>
-
-      {/* Tags + hint — revealed on hover */}
-      <div
-        style={{
-          maxHeight: 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.5s ease',
-        }}
-        className="group-hover:max-h-[80px]"
-      >
-        <p
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: '0.9rem',
-            color: 'rgba(245,240,232,0.55)',
-            letterSpacing: '0.1em',
-            marginTop: '0.5rem',
-            textTransform: 'uppercase',
-          }}
-        >
-          {project.tags.slice(0, 2).join(' · ')}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: '1rem',
-            color: 'rgba(245,240,232,0.75)',
-            marginTop: '0.25rem',
-          }}
-        >
-          Click to view details →
-        </p>
-      </div>
-    </div>
-  </motion.div>
-);
-
-/* ─── Modal ─── */
-const ProjectModal = ({ project, onClose }) => {
-  if (!project) return null;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        key="overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 500,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(26,26,26,0.88)',
-          backdropFilter: 'blur(6px)',
-          padding: '1.5rem',
-        }}
-        onClick={onClose}
-      >
-        <motion.div
-          key="card"
-          initial={{ scale: 0.9, opacity: 0, y: 24 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: 'spring', damping: 26 }}
-          style={{
-            backgroundColor: 'var(--cream)',
-            border: '2.5px solid var(--ink)',
-            borderRadius: '4px',
-            boxShadow: '8px 8px 0 var(--ink)',
-            maxWidth: '860px',
-            width: '100%',
-            maxHeight: '88vh',
-            overflow: 'hidden',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            fontFamily: "'Caveat', cursive",
-          }}
-          className="modal-grid"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Left — image */}
-          <div style={{ position: 'relative', minHeight: '300px' }}>
-            <img
-              src={project.image}
-              alt={project.name}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'sepia(12%) contrast(1.05)' }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to bottom, transparent 50%, rgba(245,240,232,0.55))',
-              }}
-            />
-          </div>
-
-          {/* Right — detail */}
-          <div style={{ padding: '2.5rem', overflowY: 'auto', position: 'relative' }}>
-            {/* Close */}
-            <button
-              onClick={onClose}
-              style={{
-                position: 'absolute',
-                top: '1rem',
-                right: '1rem',
-                background: 'none',
-                border: '1.5px solid var(--ink)',
-                borderRadius: '2px',
-                padding: '4px 6px',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <X size={18} color="var(--ink)" />
-            </button>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '1rem', color: 'var(--ink-light)', marginBottom: '0.75rem' }}>
-              <Calendar size={14} />
-              <span style={{ fontFamily: "'Caveat', cursive" }}>{project.date}</span>
-            </div>
-
-            <h2 style={{ fontFamily: "'Caveat', cursive", fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 700, color: 'var(--ink)', marginBottom: '1rem' }}>
-              {project.name}
-            </h2>
-
-            {/* Tags */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.2rem' }}>
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontFamily: "'Caveat', cursive",
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    color: 'var(--blue-accent)',
-                    backgroundColor: 'rgba(43,63,255,0.08)',
-                    border: '1px solid rgba(43,63,255,0.22)',
-                    borderRadius: '2px',
-                    padding: '1px 8px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}
-                >
-                  <Tag size={12} />
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <p style={{ fontFamily: "'Caveat', cursive", fontSize: '1.15rem', color: 'var(--ink-light)', lineHeight: 1.65, marginBottom: '1.5rem' }}>
-              {project.fullDescription}
-            </p>
-
-            <h3 style={{ fontFamily: "'Caveat', cursive", fontSize: '1.3rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '0.75rem' }}>
-              Key Features
-            </h3>
-            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
-              {project.features.map((f, i) => (
-                <li key={i} style={{ fontFamily: "'Caveat', cursive", fontSize: '1.1rem', color: 'var(--ink-light)', padding: '0.2rem 0', display: 'flex', gap: '0.5rem' }}>
-                  <span style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>→</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: 'var(--ink)',
-                  color: 'var(--cream)',
-                  border: '2px solid var(--ink)',
-                  borderRadius: '2px',
-                  fontFamily: "'Caveat', cursive",
-                  fontSize: '1.15rem',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  transition: 'background-color 0.2s, color 0.2s',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--cream)'; e.currentTarget.style.color = 'var(--ink)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'var(--ink)'; e.currentTarget.style.color = 'var(--cream)'; }}
-              >
-                <ExternalLink size={18} />
-                View Live Project
-              </a>
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
-
-/* ─── Main ─── */
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const handleViewportEnter = (index) => {
+    if (index > activeIndex) {
+      setDirection(1);
+    } else if (index < activeIndex) {
+      setDirection(-1);
+    }
+    setActiveIndex(index);
+  };
+
+  const variants = {
+    enter: (dir) => ({ y: dir > 0 ? "100%" : "-100%", opacity: 1 }),
+    center: { y: "0%", opacity: 1, scale: 1 },
+    exit: (dir) => ({ y: dir > 0 ? "-30%" : "30%", opacity: 0.5, scale: 0.95 })
+  };
 
   return (
-    <section
-      id="projects"
-      style={{
-        paddingTop: '5rem',
-        paddingBottom: '2.5rem',
-        backgroundColor: 'transparent',
-        borderTop: '1.5px solid rgba(26,26,26,0.1)',
-        overflow: 'hidden',
-        fontFamily: "'Caveat', cursive",
-        position: 'relative',
-      }}
-    >
-      <ProjectsBg />
-      <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '0 1rem' }}>
+    <section id="projects" className="relative py-24 md:py-32 bg-[#0B0B0C] text-[#FFFFFF] font-sans">
+      <div className="max-w-[1500px] mx-auto px-6 lg:px-12 w-full relative z-10">
 
-        {/* Section label */}
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: '1rem',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            color: 'var(--blue-accent)',
-            textTransform: 'uppercase',
-            marginBottom: '0.5rem',
-            paddingLeft: '1rem',
-          }}
-        >
-          ✦ My Work
-        </motion.p>
+        <div className="flex justify-between items-end border-b border-[#1A1A1D] pb-8 md:pb-12 mb-12 md:mb-24">
+          <h2 className="text-xl md:text-3xl font-normal tracking-wide text-[#FFFFFF] uppercase">
+            PROJECTS
+          </h2>
+          <span className="text-[10px] md:text-sm tracking-[0.2em] font-light text-[#A1A1AA]">
+            /suriya-projects
+          </span>
+        </div>
 
-        {/* Giant heading — original bento style */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          style={{
-            fontFamily: "'Caveat', cursive",
-            fontSize: 'clamp(3.5rem, 10vw, 8rem)',
-            fontWeight: 700,
-            color: 'var(--ink)',
-            letterSpacing: '-0.02em',
-            marginBottom: '2rem',
-            paddingLeft: '1rem',
-            lineHeight: 1,
-          }}
-        >
-          PROJECTS
-          <span style={{ color: 'rgba(26,26,26,0.2)' }}>.</span>
-        </motion.h2>
+        <div className="flex flex-col lg:flex-row relative items-start gap-12 lg:gap-24">
 
-        {/* ── Bento Grid — same layout as original ── */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 project-tiles-grid">
+          <div className="w-full lg:w-[60%] lg:sticky lg:top-32 h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden bg-[#111] z-10 relative mt-4">
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={activeIndex}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 z-10 bg-[#111]"
+              >
+                <img
+                  src={projects[activeIndex].image}
+                  alt={projects[activeIndex].title}
+                  className="w-full h-full object-cover filter brightness-[0.85]"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          {/* [0] large — col-span-4 */}
-          <ProjectTile
-            project={projects[0]}
-            className="md:col-span-4 h-[400px] md:h-[500px]"
-            index={0}
-            onClick={() => setSelectedProject(projects[0])}
-          />
+          <div className="w-full lg:w-[40%] flex flex-col pb-[30vh]">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                onViewportEnter={() => handleViewportEnter(index)}
+                viewport={{ margin: "-50% 0px -50% 0px" }}
+                className="min-h-[75vh] flex flex-col justify-center py-10"
+              >
+                <div className="text-[13px] md:text-sm font-light tracking-[0.2em] text-[#A1A1AA] mb-6">
+                  [ {(index + 1).toString().padStart(2, '0')} / {projects.length.toString().padStart(2, '0')} ]
+                </div>
 
-          {/* [1] tall — col-span-4 */}
-          <ProjectTile
-            project={projects[1]}
-            className="md:col-span-4 h-[400px] md:h-[500px]"
-            index={1}
-            onClick={() => setSelectedProject(projects[1])}
-          />
+                <h2 className="text-2xl md:text-5xl font-normal tracking-tight uppercase mb-3 text-[#FFFFFF] leading-[1.2] md:leading-[1.1]">
+                  {project.title}
+                </h2>
 
-          {/* Text blurb — col-span-4 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="md:col-span-4 flex flex-col justify-center"
-            style={{
-              padding: '2rem 2.5rem',
-              backgroundColor: 'var(--cream)',
-              border: '2px solid rgba(26,26,26,0.12)',
-              borderRadius: '4px',
-            }}
-          >
-            {/* Hand-drawn star */}
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ marginBottom: '1rem' }}>
-              <path d="M16 2 L18 13 L29 16 L18 19 L16 30 L14 19 L3 16 L14 13 Z"
-                stroke="var(--ink)" strokeWidth="1.8" fill="none" />
-            </svg>
-            <p
-              style={{
-                fontFamily: "'Caveat', cursive",
-                fontSize: '1.3rem',
-                color: 'var(--ink-light)',
-                lineHeight: 1.65,
-              }}
-            >
-              Building digital experiences that blend{' '}
-              <span style={{ color: 'var(--ink)', fontWeight: 700 }}>performance</span>
-              {' '}with{' '}
-              <span style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>creative vision</span>.
-            </p>
-            <p style={{ marginTop: '0.75rem', fontFamily: "'Caveat', cursive", fontSize: '1.05rem', color: 'rgba(26,26,26,0.45)' }}>
-              Full-stack · AI · IoT · Design
-            </p>
-          </motion.div>
+                <div className="text-[12px] md:text-[13px] tracking-widest text-[#EAEAEA] mb-6 md:mb-8 font-light uppercase opacity-80">
+                  {project.subtitle}
+                </div>
 
-          {/* [3] wide — col-span-8 */}
-          <ProjectTile
-            project={projects[3]}
-            className="md:col-span-8 h-[350px] md:h-[500px]"
-            index={3}
-            onClick={() => setSelectedProject(projects[3])}
-          />
+                <p className="text-[#A1A1AA] text-sm md:text-base lg:text-lg font-light leading-relaxed mb-8 md:mb-10 max-w-md">
+                  {project.description}
+                </p>
 
-          {/* [2] tall — col-span-4, row-span-2 */}
-          <ProjectTile
-            project={projects[2]}
-            className="md:col-span-4 h-[450px] md:h-[1020px] md:row-span-2"
-            index={2}
-            onClick={() => setSelectedProject(projects[2])}
-          />
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[12px] md:text-xs tracking-[0.25em] uppercase text-[#EAEAEA] border-b border-[#A1A1AA]/50 pb-2 hover:text-white hover:border-white transition-colors w-max font-medium"
+                  >
+                    Visit Website
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </div>
 
-          {/* [4] wide — col-span-8 */}
-          <ProjectTile
-            project={projects[4]}
-            className="md:col-span-8 h-[350px] md:h-[500px]"
-            index={4}
-            onClick={() => setSelectedProject(projects[4])}
-          />
         </div>
       </div>
-
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 };
 
 export default Projects;
+
+

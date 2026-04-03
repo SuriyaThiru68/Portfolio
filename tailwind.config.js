@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Sulphur Point"', 'sans-serif'],
+      },
       colors: {
         primary: '#131313',
         secondary: '#DBFF1A',

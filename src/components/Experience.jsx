@@ -27,7 +27,7 @@ const Experience = () => {
         backgroundColor: 'transparent',
         borderTop: '1.5px solid rgba(26,26,26,0.1)',
         padding: '7rem 2rem',
-        fontFamily: "'Caveat', cursive",
+        fontFamily: "'Sulphur Point', sans-serif",
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -40,7 +40,7 @@ const Experience = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           style={{
-            fontFamily: "'Caveat', cursive",
+            fontFamily: "'Sulphur Point', sans-serif",
             fontSize: '1rem',
             fontWeight: 600,
             letterSpacing: '0.14em',
@@ -58,7 +58,7 @@ const Experience = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           style={{
-            fontFamily: "'Caveat', cursive",
+            fontFamily: "'Sulphur Point', sans-serif",
             fontSize: 'clamp(3rem, 7vw, 5.5rem)',
             fontWeight: 700,
             color: 'var(--ink)',
@@ -69,9 +69,7 @@ const Experience = () => {
           Experience
         </motion.h2>
 
-        {/* Timeline */}
         <div style={{ position: 'relative' }}>
-          {/* Centre line */}
           <motion.div
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -106,7 +104,6 @@ const Experience = () => {
                   position: 'relative',
                 }}
               >
-                {/* Year badge — centred on timeline */}
                 <div
                   style={{
                     position: 'absolute',
@@ -116,7 +113,7 @@ const Experience = () => {
                     color: 'var(--cream)',
                     padding: '4px 16px',
                     borderRadius: '2px',
-                    fontFamily: "'Caveat', cursive",
+                    fontFamily: "'Sulphur Point', sans-serif",
                     fontWeight: 700,
                     fontSize: '1rem',
                     letterSpacing: '0.08em',
@@ -129,7 +126,6 @@ const Experience = () => {
                   {exp.year}
                 </div>
 
-                {/* Card */}
                 <div
                   className="exp-card"
                   style={{
@@ -149,10 +145,9 @@ const Experience = () => {
                     e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  {/* Mobile-only year tag */}
                   <span
                     style={{
-                      fontFamily: "'Caveat', cursive",
+                      fontFamily: "'Sulphur Point', sans-serif",
                       fontSize: '0.95rem',
                       fontWeight: 700,
                       color: 'var(--blue-accent)',
@@ -163,7 +158,7 @@ const Experience = () => {
                   </span>
                   <h3
                     style={{
-                      fontFamily: "'Caveat', cursive",
+                      fontFamily: "'Sulphur Point', sans-serif",
                       fontSize: '1.5rem',
                       fontWeight: 700,
                       color: 'var(--ink)',
@@ -175,7 +170,7 @@ const Experience = () => {
                   </h3>
                   <h4
                     style={{
-                      fontFamily: "'Caveat', cursive",
+                      fontFamily: "'Sulphur Point', sans-serif",
                       fontSize: '1.15rem',
                       fontWeight: 600,
                       color: 'var(--blue-accent)',
@@ -186,7 +181,7 @@ const Experience = () => {
                   </h4>
                   <p
                     style={{
-                      fontFamily: "'Caveat', cursive",
+                      fontFamily: "'Sulphur Point', sans-serif",
                       fontSize: '1.1rem',
                       color: 'var(--ink-light)',
                       lineHeight: 1.55,
@@ -205,3 +200,5 @@ const Experience = () => {
 };
 
 export default Experience;
+
+
