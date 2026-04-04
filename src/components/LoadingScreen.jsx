@@ -59,7 +59,7 @@ const LoadingScreen = ({ onComplete }) => {
                         overflow: 'hidden',
                     }}
                 >
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: [0, 0.15, 0.1], scale: [0.8, 1.2, 1] }}
                         transition={{ duration: 3, ease: "easeOut" }}
@@ -109,7 +109,7 @@ const LoadingScreen = ({ onComplete }) => {
                             <motion.div
                                 animate={{ scaleX: progress / 100 }}
                                 style={{
-                                    position: 'absolute', 
+                                    position: 'absolute',
                                     inset: 0,
                                     backgroundColor: '#00E5FF',
                                     transformOrigin: 'left',
@@ -119,7 +119,7 @@ const LoadingScreen = ({ onComplete }) => {
                                 transition={{ ease: 'easeOut', duration: 0.2 }}
                             />
                         </div>
-                        
+
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
                             <span style={{
                                 fontFamily: "'Sulphur Point', sans-serif",

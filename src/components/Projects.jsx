@@ -6,6 +6,7 @@ import codeNotify from './assests/code notify.jpg';
 import gamestore from './assests/gamestore.png';
 import onboardingagent from './assests/onboardingagent.png'
 import iot from './assests/iot.jpg';
+import avatarbooking from './assests/avatarbooking.png'
 
 const projects = [
   {
@@ -34,6 +35,14 @@ const projects = [
   },
   {
     id: '04',
+    title: 'AI AVATAR BOOKING SYSTEM',
+    subtitle: 'AI & Full Stack',
+    description: 'Developed a smart web-based platform that allows users to book AI-powered avatars for various use cases such as customer support, content creation, virtual assistance, and interactive experiences.',
+    image: avatarbooking,
+    link: 'https://avatar-bookings.vercel.app/',
+  },
+  {
+    id: '05',
     title: 'GAME STORE',
     subtitle: 'E-commerce Platform',
     description: 'A modern digital storefront for Xbox games featuring a sleek UI, interactive game catalog, shopping cart functionality, and detailed user reviews.',
@@ -41,7 +50,7 @@ const projects = [
     link: 'https://suriyathiru68.github.io/Game-Store/',
   },
   {
-    id: '05',
+    id: '06',
     title: 'PUBLIC TOILET SYSTEM',
     subtitle: 'IoT Solution',
     description: 'An innovative IoT solution for public restroom maintenance featuring real-time hygiene monitoring, automated Telegram alerts, and an analytics dashboard.',
