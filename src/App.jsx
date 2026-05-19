@@ -8,6 +8,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import WebsitePricing from './components/WebsitePricing';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import Reveal from './components/Reveal';
@@ -23,7 +24,7 @@ const App = () => {
   useEffect(() => {
     if (!isLoaded) return;
     const handleScroll = () => {
-      const sections = ['home', 'about', 'expertise', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['home', 'about', 'expertise', 'skills', 'projects', 'experience', 'pricing', 'contact'];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -68,6 +69,7 @@ const App = () => {
               <Skills />
               <Projects />
               <Experience />
+              <WebsitePricing />
               <Contact />
             </main>
             <Footer />
