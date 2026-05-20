@@ -27,14 +27,6 @@ const projects = [
   },
   {
     id: '03',
-    title: 'AI ONBOARDING AGENT',
-    subtitle: 'AI & Full Stack',
-    description: 'Revolutionary AI-powered onboarding system that streamlines vendor registration. Features intelligent form filling, document verification, and automated KYC processing.',
-    image: onboardingagent,
-    link: 'https://ai-onboarding-agent.vercel.app/',
-  },
-  {
-    id: '04',
     title: 'AI AVATAR BOOKING SYSTEM',
     subtitle: 'AI & Full Stack',
     description: 'Developed a smart web-based platform that allows users to book AI-powered avatars for various use cases such as customer support, content creation, virtual assistance, and interactive experiences.',
@@ -42,7 +34,7 @@ const projects = [
     link: 'https://avatar-bookings.vercel.app/',
   },
   {
-    id: '05',
+    id: '04',
     title: 'GAME STORE',
     subtitle: 'E-commerce Platform',
     description: 'A modern digital storefront for Xbox games featuring a sleek UI, interactive game catalog, shopping cart functionality, and detailed user reviews.',
@@ -50,7 +42,7 @@ const projects = [
     link: 'https://suriyathiru68.github.io/Game-Store/',
   },
   {
-    id: '06',
+    id: '05',
     title: 'PUBLIC TOILET SYSTEM',
     subtitle: 'IoT Solution',
     description: 'An innovative IoT solution for public restroom maintenance featuring real-time hygiene monitoring, automated Telegram alerts, and an analytics dashboard.',
