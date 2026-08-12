@@ -1,103 +1,243 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from './assests/porfoliologo.png';
+
+const navItems = [
+  { label: 'Shop / About',  id: 'about' },
+  { label: 'Skills',        id: 'skills' },
+  { label: 'Projects',      id: 'projects' },
+  { label: 'Contact',       id: 'contact' },
+];
 
 const Navbar = ({ activeSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId) => {
-    const el = document.getElementById(sectionId);
-    if (el) { el.scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) { el.scrollIntoView({ behavior: 'instant' }); setMenuOpen(false); }
   };
-
-  const navItems = [
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Services', id: 'services' },
-    { label: 'Contact', id: 'contact' },
-  ];
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-[200] transition-all duration-500 font-sans ${
-          scrolled ? 'bg-[#0f0f0f]/95 backdrop-blur-sm shadow-md h-[70px]' : 'bg-transparent h-[100px]'
-        }`}
+        style={{
+          position: 'sticky',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 500,
+          backgroundColor: '#b6a4e5', // Alec Monopoly signature pastel lavender
+          borderTop: '1px solid #000000',
+          borderBottom: '1px solid #000000',
+        }}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-full">
+        {/* Full-width 1px Grid Columns (Desktop) */}
+        <div className="nav-desktop-grid">
+          {/* Col 1: Brand / Logo */}
           <button
-            onClick={() => scrollToSection('home')}
-            className="relative z-50 flex items-center"
+            onClick={() => scrollTo('home')}
+            style={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              borderRight: '1px solid #000000',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              transition: 'background-color 0.15s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#bef2bd'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
           >
-            <img src={logo} alt="Suriya Logo" className="h-10 md:h-[45px] w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+            SURIYA T.
           </button>
 
-          <ul className="hidden md:flex gap-10 lg:gap-14 items-center">
-            {navItems.map(({ label, id }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(id); }}
-                  className={`text-2xl font-medium transition-colors duration-300 relative group ${
-                    activeSection === id ? 'text-white' : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  {label}
-                  <span className={`absolute left-0 -bottom-2 w-full h-[1px] bg-white transition-all duration-300 ${
-                    activeSection === id ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
-                  }`} />
-                </a>
-              </li>
-            ))}
-          </ul>
-
+          {/* Col 2: About Link */}
           <button
-            className="md:hidden text-white relative z-50 flex flex-col gap-[6px] p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => scrollTo('about')}
+            style={{
+              backgroundColor: activeSection === 'about' ? '#bef2bd' : 'transparent',
+              border: 'none',
+              borderRight: '1px solid #000000',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              transition: 'background-color 0.15s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#bef2bd'}
+            onMouseLeave={e => {
+              if (activeSection !== 'about') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
           >
-            <span className={`block w-6 h-[1px] bg-white transition-transform ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`}></span>
-            <span className={`block w-6 h-[1px] bg-white transition-opacity ${menuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-6 h-[1px] bg-white transition-transform ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}></span>
+            About
           </button>
+
+          {/* Col 3: Skills Link */}
+          <button
+            onClick={() => scrollTo('skills')}
+            style={{
+              backgroundColor: activeSection === 'skills' ? '#bef2bd' : 'transparent',
+              border: 'none',
+              borderRight: '1px solid #000000',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              transition: 'background-color 0.15s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#bef2bd'}
+            onMouseLeave={e => {
+              if (activeSection !== 'skills') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+          >
+            Skills
+          </button>
+
+          {/* Col 4: Spacer / Center Fill */}
+          <div
+            style={{
+              borderRight: '1px solid #000000',
+              backgroundColor: 'transparent',
+            }}
+          />
+
+          {/* Col 5: Projects Link */}
+          <button
+            onClick={() => scrollTo('projects')}
+            style={{
+              backgroundColor: activeSection === 'projects' ? '#bef2bd' : 'transparent',
+              border: 'none',
+              borderRight: '1px solid #000000',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              transition: 'background-color 0.15s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#bef2bd'}
+            onMouseLeave={e => {
+              if (activeSection !== 'projects') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+          >
+            Projects
+          </button>
+
+          {/* Col 6: Hire / Contact Button */}
+          <a
+            href="mailto:suriyathiru666@gmail.com"
+            style={{
+              backgroundColor: 'transparent',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              transition: 'background-color 0.15s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#bef2bd'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+          >
+            Hire Me →
+          </a>
         </div>
 
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: '-100%' }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: '-100%' }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute top-0 left-0 w-full h-screen bg-[#0f0f0f] flex flex-col justify-center items-center gap-10 z-40"
-            >
-              {navItems.map(({ label, id }) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(id); }}
-                  className={`text-4xl font-medium transition-colors ${
-                    activeSection === id ? 'text-white' : 'text-gray-500 hover:text-white'
-                  }`}
-                >
-                  {label}
-                </a>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Header Bar */}
+        <div className="nav-mobile-bar">
+          <span
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: '1rem',
+            }}
+          >
+            SURIYA T.
+          </span>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              backgroundColor: '#bef2bd',
+              border: '1px solid #000000',
+              padding: '0.3rem 0.8rem',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: '0.8rem',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+            }}
+          >
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            style={{
+              position: 'fixed',
+              top: '53px',
+              left: 0,
+              width: '100%',
+              backgroundColor: '#b6a4e5',
+              borderBottom: '2px solid #000000',
+              display: 'flex',
+              flexDirection: 'column',
+              zIndex: 490,
+            }}
+          >
+            {navItems.map(({ label, id }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                style={{
+                  padding: '1rem 1.5rem',
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: '2.2rem',
+                  color: '#000000',
+                  textAlign: 'left',
+                  borderBottom: '1px solid #000000',
+                  backgroundColor: 'transparent',
+                  cursor: 'pointer',
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
 
 export default Navbar;
-
-

@@ -1,204 +1,151 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ExperienceBg } from './SectionBackgrounds';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
     year: '2025',
-    role: 'Full Stack Development',
-    company: 'LearnLogicify Technologies LLP',
-    description: 'Building responsive web applications and interactive user interfaces with modern tech stack.',
-    side: 'right',
+    role: 'FULL STACK DEVELOPMENT INTERN',
+    company: 'LEARNLOGICIFY TECHNOLOGIES LLP',
+    description: 'Building responsive web applications and interactive front-end user interfaces with modern React ecosystem, FastAPI backends, and modular styling.',
+    bg: '#b6a4e5',
   },
   {
     year: '2024',
-    role: 'Web Development',
-    company: 'Ether Infotech',
-    description: 'Built and improved responsive web interfaces for client-facing projects and internal tools.',
-    side: 'left',
+    role: 'WEB DEVELOPMENT INTERN',
+    company: 'ETHER INFOTECH',
+    description: 'Built and optimized client-facing web interfaces, internal tools, and database connections with high emphasis on performance and cross-device responsiveness.',
+    bg: '#bef2bd',
   },
 ];
 
 const Experience = () => {
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const logsRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(titleRef.current, {
+      x: -50,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      },
+    });
+
+    if (logsRef.current) {
+      gsap.from(logsRef.current.children, {
+        x: -40,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: logsRef.current,
+          start: 'top 80%',
+        },
+      });
+    }
+  }, { scope: containerRef });
+
   return (
     <section
+      ref={containerRef}
       id="experience"
       style={{
-        backgroundColor: 'transparent',
-        borderTop: '1.5px solid rgba(26,26,26,0.1)',
-        padding: '7rem 2rem',
-        fontFamily: "'Sulphur Point', sans-serif",
-        position: 'relative',
+        backgroundColor: '#f4f4f0',
+        color: '#000000',
+        padding: '5rem 0',
+        borderBottom: '1px solid #000000',
         overflow: 'hidden',
       }}
     >
-      <ExperienceBg />
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)' }}>
 
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: '1rem',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            color: 'var(--blue-accent)',
-            textTransform: 'uppercase',
-            marginBottom: '0.75rem',
-          }}
-        >
-          ✦ Career
-        </motion.p>
+        <div ref={titleRef}>
+          <h2 className="section-slash">
+            /EXPERIENCE
+          </h2>
+        </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-            fontWeight: 700,
-            color: 'var(--ink)',
-            marginBottom: '4rem',
-            lineHeight: 1.1,
-          }}
-        >
-          Experience
-        </motion.h2>
-
-        <div style={{ position: 'relative' }}>
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: 0,
-              bottom: 0,
-              width: '2px',
-              backgroundColor: 'rgba(26,26,26,0.15)',
-              transform: 'translateX(-50%)',
-              transformOrigin: 'top',
-            }}
-            className="hidden-on-mobile"
-          />
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: exp.side === 'right' ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.2 }}
-                className="exp-row"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: exp.side === 'right' ? 'flex-start' : 'flex-end',
-                  position: 'relative',
-                }}
-              >
-                <div
+        <div ref={logsRef} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {experiences.map((exp) => (
+            <motion.div
+              key={exp.role}
+              whileHover={{ x: 8, boxShadow: '6px 6px 0 #000000' }}
+              transition={{ duration: 0.2 }}
+              className="exp-card"
+            >
+              <div className="exp-card-badge">
+                <span
                   style={{
-                    position: 'absolute',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    backgroundColor: 'var(--ink)',
-                    color: 'var(--cream)',
-                    padding: '4px 16px',
-                    borderRadius: '2px',
-                    fontFamily: "'Sulphur Point', sans-serif",
-                    fontWeight: 700,
-                    fontSize: '1rem',
-                    letterSpacing: '0.08em',
-                    whiteSpace: 'nowrap',
-                    zIndex: 10,
-                    top: '1.5rem',
+                    backgroundColor: exp.bg,
+                    border: '1px solid #000000',
+                    padding: '0.4rem 0.8rem',
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: '2.2rem',
+                    lineHeight: 1,
+                    display: 'inline-block',
                   }}
-                  className="year-badge-hidden"
                 >
                   {exp.year}
-                </div>
+                </span>
+              </div>
 
-                <div
-                  className="exp-card"
+              <div>
+                <h3
                   style={{
-                    width: '46%',
-                    backgroundColor: 'var(--cream-dark)',
-                    border: '2px solid rgba(26,26,26,0.14)',
-                    borderRadius: '4px',
-                    padding: '1.8rem 2rem',
-                    transition: 'border-color 0.2s, box-shadow 0.2s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--blue-accent)';
-                    e.currentTarget.style.boxShadow = '4px 4px 0 var(--blue-accent)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(26,26,26,0.14)';
-                    e.currentTarget.style.boxShadow = 'none';
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: 'clamp(1.6rem, 3.5vw, 3rem)',
+                    lineHeight: 0.95,
+                    color: '#000000',
+                    marginBottom: '0.4rem',
+                    wordBreak: 'break-word',
+                    overflowWrap: 'break-word',
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "'Sulphur Point', sans-serif",
-                      fontSize: '0.95rem',
-                      fontWeight: 700,
-                      color: 'var(--blue-accent)',
-                      letterSpacing: '0.1em',
-                    }}
-                  >
-                    {exp.year}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "'Sulphur Point', sans-serif",
-                      fontSize: '1.5rem',
-                      fontWeight: 700,
-                      color: 'var(--ink)',
-                      marginTop: '0.25rem',
-                      marginBottom: '0.4rem',
-                    }}
-                  >
-                    {exp.role}
-                  </h3>
-                  <h4
-                    style={{
-                      fontFamily: "'Sulphur Point', sans-serif",
-                      fontSize: '1.15rem',
-                      fontWeight: 600,
-                      color: 'var(--blue-accent)',
-                      marginBottom: '0.75rem',
-                    }}
-                  >
-                    {exp.company}
-                  </h4>
-                  <p
-                    style={{
-                      fontFamily: "'Sulphur Point', sans-serif",
-                      fontSize: '1.1rem',
-                      color: 'var(--ink-light)',
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {exp.description}
-                  </p>
+                  {exp.role}
+                </h3>
+
+                <div
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    color: '#FF0055',
+                    marginBottom: '1.2rem',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {exp.company}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <p
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '1.05rem',
+                    lineHeight: 1.6,
+                    color: '#333333',
+                    margin: 0,
+                  }}
+                >
+                  {exp.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Experience;
-
-

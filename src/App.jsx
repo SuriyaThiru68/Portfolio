@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
@@ -7,25 +9,33 @@ import Expertise from './components/Expertise';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Gallery from './components/Gallery';
+import ZoomTextSection from './components/ZoomTextSection';
 import Experience from './components/Experience';
-import WebsitePricing from './components/WebsitePricing';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
-import Reveal from './components/Reveal';
-import Background from './components/Background';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
-import { ReactLenis } from '@studio-freight/react-lenis';
+
+// Register GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [showLoading, setShowLoading] = useState(true);
+
+  // Scroll Progress Spring Animation
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 25,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
-    if (!isLoaded) return;
     const handleScroll = () => {
-      const sections = ['home', 'about', 'expertise', 'skills', 'projects', 'experience', 'services', 'contact'];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const sections = ['home', 'about', 'expertise', 'skills', 'projects', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -40,46 +50,57 @@ const App = () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isLoaded]);
+  }, []);
+
+  if (showLoading) {
+    return <LoadingScreen onFinish={() => setShowLoading(false)} />;
+  }
 
   return (
-    <ReactLenis root options={{ lerp: 0.05, duration: 1.5, smoothWheel: true }}>
-      <LoadingScreen onComplete={() => setIsLoaded(true)} />
+    <div style={{ position: 'relative', backgroundColor: '#f4f4f0' }}>
+      {/* Top Scroll Progress Indicator */}
+      <motion.div
+        style={{
+          scaleX,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '3px',
+          backgroundColor: '#FF0055',
+          transformOrigin: '0%',
+          zIndex: 9999,
+        }}
+      />
 
-      <AnimatePresence>
-        {isLoaded && (
-          <motion.div
-            key="site"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            style={{ position: 'relative' }}
-            className="overflow-clip"
-          >
-            <Background />
-            <CustomCursor />
-            <Navbar activeSection={activeSection} />
-            <main>
-              <Hero />
-              <Reveal width="100%">
-                <Marquee />
-              </Reveal>
-              <Expertise />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <WebsitePricing />
-              <Contact />
-            </main>
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </ReactLenis>
+      <CustomCursor />
+      <Navbar activeSection={activeSection} />
+
+      <main>
+        <Hero />
+        <Marquee />
+        <Expertise />
+        <About />
+        <ZoomTextSection
+          texts={[
+            "DESIGN. DEVELOP. DEPLOY.",
+            "CREATING SEAMLESS USER EXPERIENCES WITH MODERN TECHNOLOGIES.",
+            "DRIVEN BY CREATIVITY, CODE, AND CONTINUOUS LEARNING.",
+          ]}
+          color="#000000"
+          bgColor="rgb(244, 244, 240)"
+          accentColor="#b6a4e5"
+        />
+        <Skills />
+        <Projects />
+        <Gallery />
+        <Experience />
+        <Contact />
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
 export default App;
-
-

@@ -25,9 +25,9 @@ export const HeroBg = () => (
         <svg width="540" height="540" viewBox="0 0 540 540" fill="none"
             style={{ position: 'absolute', top: '-100px', left: '-110px', opacity: 0.16 }}>
             <path d="M74 270 C69 124 172 20 270 22 C378 24 468 126 466 270 C464 414 362 520 270 518 C178 516 79 412 74 270 Z"
-                stroke="#00E5FF" strokeWidth="32" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="32" strokeLinecap="round" fill="none" />
             <path d="M106 270 C102 148 188 60 270 62 C356 64 436 148 434 270 C432 392 350 476 270 474 C190 472 110 392 106 270 Z"
-                stroke="#00E5FF" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.38" />
+                stroke="#7e3effff" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.38" />
         </svg>
 
         <svg width="420" height="380" viewBox="0 0 420 380" fill="none"
@@ -43,19 +43,19 @@ export const HeroBg = () => (
         <svg width="210" height="130" viewBox="0 0 210 130" fill="none"
             style={{ position: 'absolute', top: '20%', right: '24%', opacity: 0.11 }}>
             <path d="M10 108 C62 96 148 62 202 10"
-                stroke="#00E5FF" strokeWidth="14" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="14" strokeLinecap="round" fill="none" />
             <path d="M170 3 L204 8 L197 44"
-                stroke="#00E5FF" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             <path d="M14 122 C68 108 156 76 208 26"
-                stroke="#00E5FF" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.4" />
+                stroke="#7e3effff" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.4" />
         </svg>
 
         <svg width="290" height="360" viewBox="0 0 290 360" fill="none"
             style={{ position: 'absolute', top: '30%', right: '-58px', opacity: 0.12 }}>
             <path d="M270 180 C264 66 207 10 145 8 C76 6 14 70 12 180 C10 290 72 352 145 350 C218 348 276 292 270 180 Z"
-                stroke="#00E5FF" strokeWidth="26" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="26" strokeLinecap="round" fill="none" />
             <path d="M244 180 C240 86 194 38 145 36 C94 34 42 88 40 180 C38 272 90 324 145 322 C200 320 248 274 244 180 Z"
-                stroke="#00E5FF" strokeWidth="6" strokeLinecap="round" fill="none" opacity="0.38" />
+                stroke="#7e3effff" strokeWidth="6" strokeLinecap="round" fill="none" opacity="0.38" />
         </svg>
 
         {[{ x: '84%', y: '14%', a: 45 }, { x: '12%', y: '78%', a: 0 }, { x: '46%', y: '88%', a: 20 }].map(({ x, y, a }, i) => (
@@ -83,30 +83,30 @@ export const ExpertiseBg = () => (
         <svg width="300" height="300" viewBox="0 0 300 300" fill="none"
             style={{ position: 'absolute', right: '-60px', top: '50%', transform: 'translateY(-50%)', opacity: 0.10 }}>
             <path d="M150 10 L290 150 L150 290 L10 150 Z"
-                stroke="#00E5FF" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             <path d="M150 42 L258 150 L150 258 L42 150 Z"
-                stroke="#00E5FF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.4" />
+                stroke="#7e3effff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.4" />
         </svg>
 
         <svg width="180" height="180" viewBox="0 0 180 180" fill="none"
             style={{ position: 'absolute', left: '-40px', top: '20%', opacity: 0.09 }}>
             <path d="M90 8 L172 90 L90 172 L8 90 Z"
-                stroke="#ffffff" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
         </svg>
 
         {[20, 50, 80].map(pct => (
             <svg key={pct} width="100%" height="3" viewBox="0 0 1000 3" preserveAspectRatio="none"
                 style={{ position: 'absolute', top: `${pct}%`, left: 0, opacity: 0.07 }}>
                 <line x1="0" y1="1.5" x2="1000" y2="1.5"
-                    stroke="#ffffff" strokeWidth="2" strokeDasharray="18 12" />
+                    stroke="#7e3effff" strokeWidth="2" strokeDasharray="18 12" />
             </svg>
         ))}
 
         {[{ x: '8%', y: '12%' }, { x: '92%', y: '75%' }, { x: '50%', y: '5%' }, { x: '50%', y: '92%' }].map(({ x, y }, i) => (
             <svg key={i} width="18" height="18" viewBox="0 0 18 18" fill="none"
                 style={{ position: 'absolute', left: x, top: y, opacity: 0.14 }}>
-                <line x1="9" y1="0" x2="9" y2="18" stroke="#00E5FF" strokeWidth="3" strokeLinecap="round" />
-                <line x1="0" y1="9" x2="18" y2="9" stroke="#00E5FF" strokeWidth="3" strokeLinecap="round" />
+                <line x1="9" y1="0" x2="9" y2="18" stroke="#7e3effff" strokeWidth="3" strokeLinecap="round" />
+                <line x1="0" y1="9" x2="18" y2="9" stroke="#7e3effff" strokeWidth="3" strokeLinecap="round" />
             </svg>
         ))}
     </div>
@@ -118,7 +118,7 @@ export const AboutBg = () => (
         <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.7 }}>
             <defs>
                 <pattern id="about-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-                    <circle cx="1" cy="1" r="0.9" fill="#ffffff" opacity="0.10" />
+                    <circle cx="1" cy="1" r="0.9" fill="#000000" opacity="0.08" />
                 </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#about-dots)" />
@@ -127,35 +127,35 @@ export const AboutBg = () => (
         <svg width="280" height="240" viewBox="0 0 280 240" fill="none"
             style={{ position: 'absolute', top: '-20px', right: '-10px', opacity: 0.13 }}>
             <path d="M140 14 C212 14 258 56 254 106 C250 154 210 178 166 172 C114 166 74 128 80 88 C86 50 122 34 154 50 C184 64 194 98 178 118 C162 138 132 136 118 118"
-                stroke="#00E5FF" strokeWidth="16" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="16" strokeLinecap="round" fill="none" />
             <path d="M118 118 C102 98 100 78 114 70 C130 62 148 72 142 88"
-                stroke="#00E5FF" strokeWidth="10" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="10" strokeLinecap="round" fill="none" />
         </svg>
 
         <svg width="80" height="100%" viewBox="0 0 80 600" preserveAspectRatio="none" fill="none"
-            style={{ position: 'absolute', left: 0, top: 0, height: '100%', opacity: 0.12 }}>
+            style={{ position: 'absolute', left: 0, top: 0, height: '100%', opacity: 0.08 }}>
             <path d="M24 20 C22 100 27 200 24 300 C21 360 14 380 17 405 C20 428 28 424 28 440 C28 458 20 468 23 490 C26 514 28 530 26 560"
-                stroke="#ffffff" strokeWidth="12" strokeLinecap="round" fill="none" />
+                stroke="#000000" strokeWidth="12" strokeLinecap="round" fill="none" />
             <path d="M54 20 C56 90 52 170 54 270 C56 310 62 326 60 345 C58 364 54 360 54 378"
-                stroke="#ffffff" strokeWidth="7" strokeLinecap="round" fill="none" />
-            <ellipse cx="24" cy="568" rx="9" ry="12" fill="#ffffff" opacity="0.5" />
-            <ellipse cx="54" cy="385" rx="6" ry="8" fill="#ffffff" opacity="0.4" />
+                stroke="#000000" strokeWidth="7" strokeLinecap="round" fill="none" />
+            <ellipse cx="24" cy="568" rx="9" ry="12" fill="#000000" opacity="0.3" />
+            <ellipse cx="54" cy="385" rx="6" ry="8" fill="#000000" opacity="0.2" />
         </svg>
 
         {[25, 60, 88].map((t, i) => (
             <svg key={i} width="320" height="16" viewBox="0 0 320 16" fill="none"
-                style={{ position: 'absolute', right: '5%', top: `${t}%`, opacity: 0.09 }}>
+                style={{ position: 'absolute', right: '5%', top: `${t}%`, opacity: 0.07 }}>
                 <path d="M2 8 Q40 2 80 8 Q120 14 160 8 Q200 2 240 8 Q280 14 318 8"
-                    stroke={i % 2 === 0 ? '#00E5FF' : '#ffffff'} strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                    stroke={i % 2 === 0 ? '#7e3effff' : '#000000'} strokeWidth="2.5" strokeLinecap="round" fill="none" />
             </svg>
         ))}
 
         <svg width="200" height="170" viewBox="0 0 200 170" fill="none"
-            style={{ position: 'absolute', bottom: '-10px', right: '15%', opacity: 0.10 }}>
+            style={{ position: 'absolute', bottom: '-10px', right: '15%', opacity: 0.07 }}>
             <path d="M100 12 C152 12 183 42 180 78 C176 112 148 132 116 128 C80 124 54 98 58 68 C62 40 88 28 112 40 C134 50 142 74 128 92 C114 110 90 108 80 94"
-                stroke="#ffffff" strokeWidth="12" strokeLinecap="round" fill="none" />
+                stroke="#000000" strokeWidth="12" strokeLinecap="round" fill="none" />
             <path d="M80 94 C68 78 66 62 78 56 C90 50 104 60 100 73"
-                stroke="#ffffff" strokeWidth="7" strokeLinecap="round" fill="none" />
+                stroke="#000000" strokeWidth="7" strokeLinecap="round" fill="none" />
         </svg>
     </div>
 );
@@ -175,15 +175,15 @@ export const SkillsBg = () => (
         </svg>
 
         {[
-            { x: '6%', y: '15%', s: 50, c: '#00E5FF', a: 15 },
-            { x: '88%', y: '8%', s: 38, c: '#ffffff', a: 0 },
-            { x: '78%', y: '82%', s: 44, c: '#00E5FF', a: 30 },
-            { x: '4%', y: '75%', s: 36, c: '#ffffff', a: 10 },
-            { x: '48%', y: '6%', s: 28, c: '#00E5FF', a: 45 },
-            { x: '50%', y: '92%', s: 32, c: '#ffffff', a: 20 },
+            { x: '6%', y: '15%', s: 50, c: '#7e3effff', a: 15 },
+            { x: '88%', y: '8%', s: 38, c: '#000000', a: 0 },
+            { x: '78%', y: '82%', s: 44, c: '#7e3effff', a: 30 },
+            { x: '4%', y: '75%', s: 36, c: '#000000', a: 10 },
+            { x: '48%', y: '6%', s: 28, c: '#7e3effff', a: 45 },
+            { x: '50%', y: '92%', s: 32, c: '#000000', a: 20 },
         ].map(({ x, y, s, c, a }, i) => (
             <svg key={i} width={s} height={s} viewBox={`0 0 ${s} ${s}`} fill="none"
-                style={{ position: 'absolute', left: x, top: y, opacity: 0.12, transform: `rotate(${a}deg)` }}>
+                style={{ position: 'absolute', left: x, top: y, opacity: 0.09, transform: `rotate(${a}deg)` }}>
                 {[0, 60, 120].map(angle => (
                     <g key={angle} transform={`rotate(${angle} ${s / 2} ${s / 2})`}>
                         <line x1={s / 2} y1="2" x2={s / 2} y2={s - 2} stroke={c} strokeWidth="3.5" strokeLinecap="round" />
@@ -193,13 +193,13 @@ export const SkillsBg = () => (
             </svg>
         ))}
 
-        {[{ t: '30%', w: 180, op: 0.11 }, { t: '65%', w: 220, op: 0.09 }, { t: '80%', w: 150, op: 0.10 }].map(({ t, w, op }, i) => (
+        {[{ t: '30%', w: 180, op: 0.09 }, { t: '65%', w: 220, op: 0.07 }, { t: '80%', w: 150, op: 0.08 }].map(({ t, w, op }, i) => (
             <svg key={i} width={w} height="60" viewBox={`0 0 ${w} 60`} fill="none"
                 style={{ position: 'absolute', right: i % 2 === 0 ? '0' : undefined, left: i % 2 !== 0 ? '0' : undefined, top: t, opacity: op }}>
                 <path d={`M5 30 Q${w * 0.25} 12 ${w / 2} 30 Q${w * 0.75} 48 ${w - 5} 30`}
-                    stroke="#ffffff" strokeWidth="26" strokeLinecap="round" fill="none" />
+                    stroke="#000000" strokeWidth="26" strokeLinecap="round" fill="none" />
                 <path d={`M5 30 Q${w * 0.25} 12 ${w / 2} 30 Q${w * 0.75} 48 ${w - 5} 30`}
-                    stroke="#f5f0e8" strokeWidth="10" strokeLinecap="round" fill="none" opacity="0.5" />
+                    stroke="#000000" strokeWidth="10" strokeLinecap="round" fill="none" opacity="0.15" />
             </svg>
         ))}
 
@@ -207,7 +207,7 @@ export const SkillsBg = () => (
             <svg key={i} width="24" height="24" viewBox="0 0 24 24" fill="none"
                 style={{ position: 'absolute', left: x, top: y, opacity: 0.12 }}>
                 <path d="M12 1 L13.8 10.2 L23 12 L13.8 13.8 L12 23 L10.2 13.8 L1 12 L10.2 10.2 Z"
-                    stroke="#00E5FF" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+                    stroke="#7e3effff" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
             </svg>
         ))}
     </div>
@@ -221,9 +221,9 @@ export const ProjectsBg = () => (
             {[0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5].map(a => (
                 <line key={a} x1="95" y1="95"
                     x2={95 + 84 * Math.cos(a * Math.PI / 180)} y2={95 + 84 * Math.sin(a * Math.PI / 180)}
-                    stroke="#00E5FF" strokeWidth="9" strokeLinecap="round" />
+                    stroke="#7e3effff" strokeWidth="9" strokeLinecap="round" />
             ))}
-            <circle cx="95" cy="95" r="14" fill="#00E5FF" opacity="0.55" />
+            <circle cx="95" cy="95" r="14" fill="#7e3effff" opacity="0.55" />
         </svg>
 
         <svg width="130" height="130" viewBox="0 0 130 130" fill="none"
@@ -249,9 +249,9 @@ export const ProjectsBg = () => (
         <svg width="240" height="240" viewBox="0 0 240 240" fill="none"
             style={{ position: 'absolute', right: '-50px', bottom: '10%', opacity: 0.11 }}>
             <path d="M120 10 C58 13 10 58 8 120 C6 182 54 230 120 228 C186 226 234 178 232 120 C230 62 182 8 120 10 Z"
-                stroke="#00E5FF" strokeWidth="18" strokeLinecap="round" fill="none" />
+                stroke="#7e3effff" strokeWidth="18" strokeLinecap="round" fill="none" />
             <path d="M120 38 C76 40 34 78 32 120 C30 162 70 202 120 200 C170 198 210 160 208 120 C206 80 166 36 120 38 Z"
-                stroke="#00E5FF" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.38" />
+                stroke="#7e3effff" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.38" />
         </svg>
 
         <svg width="110" height="110" viewBox="0 0 110 110" fill="none"

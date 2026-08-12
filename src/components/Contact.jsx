@@ -1,146 +1,156 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ContactBg } from './SectionBackgrounds';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/suriyathiruppathy/' },
-  { name: 'GitHub', url: 'https://github.com/SuriyaThiru68' },
-  { name: 'Behance', url: 'https://www.behance.net/suriyathiru' },
-  { name: 'Codolio', url: 'https://codolio.com/profile/SURIYA%20T' },
+  { name: 'LinkedIn →', url: 'https://www.linkedin.com/in/suriyathiruppathy/', bg: '#b6a4e5' },
+  { name: 'GitHub →',   url: 'https://github.com/SuriyaThiru68', bg: '#bef2bd' },
+  { name: 'Codolio →',  url: 'https://codolio.com/profile/SURIYA%20T', bg: '#b6a4e5' },
 ];
 
 const Contact = () => {
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const headlineRef = useRef(null);
+  const socialsRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(titleRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      },
+    });
+
+    gsap.from(headlineRef.current, {
+      scale: 0.92,
+      opacity: 0,
+      duration: 0.9,
+      ease: 'back.out(1.4)',
+      scrollTrigger: {
+        trigger: headlineRef.current,
+        start: 'top 85%',
+      },
+    });
+
+    if (socialsRef.current) {
+      gsap.from(socialsRef.current.children, {
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.6,
+        ease: 'back.out(1.6)',
+        scrollTrigger: {
+          trigger: socialsRef.current,
+          start: 'top 90%',
+        },
+      });
+    }
+  }, { scope: containerRef });
+
   return (
     <section
+      ref={containerRef}
       id="contact"
       style={{
-        backgroundColor: 'transparent',
-        borderTop: '1.5px solid rgba(26,26,26,0.1)',
-        padding: '7rem 2rem 5rem',
-        fontFamily: "'Sulphur Point', sans-serif",
-        textAlign: 'center',
-        position: 'relative',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        padding: '6rem 0 5rem',
+        borderBottom: '1px solid #000000',
         overflow: 'hidden',
       }}
     >
-      <ContactBg />
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)', textAlign: 'center' }}>
+        
+        <div ref={titleRef}>
+          <h2 className="section-slash" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            /GET IN TOUCH
+          </h2>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+        <div ref={headlineRef}>
+          <h3
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: 'clamp(2.2rem, 8vw, 7.5rem)',
+              lineHeight: 0.88,
+              textTransform: 'uppercase',
+              color: '#000000',
+              marginBottom: '2rem',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+            }}
+          >
+            LET'S WORK TOGETHER ON YOUR NEXT PROJECT
+          </h3>
+        </div>
+
+        <p
           style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: '1rem',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            color: 'var(--blue-accent)',
-            textTransform: 'uppercase',
-            marginBottom: '0.75rem',
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: 'clamp(1rem, 1.8vw, 1.35rem)',
+            color: '#444444',
+            maxWidth: '650px',
+            margin: '0 auto 3rem',
+            lineHeight: 1.6,
           }}
         >
-          ✦ Say Hello
-        </motion.p>
+          Available for full-stack engineering roles, agentic AI platform development, machine learning projects, and freelance collaborations.
+        </p>
 
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.92 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: 'clamp(3rem, 9vw, 6.5rem)',
-            fontWeight: 700,
-            color: 'var(--ink)',
-            lineHeight: 1.1,
-            marginBottom: '1.5rem',
-          }}
-        >
-          Let's Talk
-        </motion.h2>
+        {/* Email Sticker Button with Spring Physics */}
+        <div style={{ marginBottom: '4rem' }}>
+          <motion.a
+            href="mailto:suriyathiru666@gmail.com"
+            className="btn-sticker"
+            whileHover={{ scale: 1.05, backgroundColor: '#bef2bd' }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+            style={{
+              fontSize: 'clamp(0.85rem, 3.5vw, 1.3rem)',
+              padding: '0.8rem clamp(1rem, 3vw, 2.5rem)',
+              backgroundColor: '#b6a4e5',
+              display: 'inline-block',
+            }}
+          >
+            suriyathiru666@gmail.com ✉
+          </motion.a>
+        </div>
 
-        <svg width="300" height="16" viewBox="0 0 300 16" fill="none" style={{ marginBottom: '2.5rem' }}>
-          <path
-            d="M4 8 Q37.5 2 75 8 Q112.5 14 150 8 Q187.5 2 225 8 Q262.5 14 296 8"
-            stroke="var(--ink)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </svg>
-
-        <motion.a
-          href="mailto:suriyathiru666@gmail.com"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)',
-            fontWeight: 700,
-            color: 'var(--blue-accent)',
-            textDecoration: 'none',
-            display: 'inline-block',
-            marginBottom: '4rem',
-            borderBottom: '2px dashed rgba(0,229,255,0.4)',
-            paddingBottom: '4px',
-            transition: 'color 0.2s, border-color 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = 'var(--ink)';
-            e.currentTarget.style.borderColor = 'var(--ink)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = 'var(--blue-accent)';
-            e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)';
-          }}
-        >
-          suriyathiru666@gmail.com
-        </motion.a>
-
-        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem' }}>
-          {socials.map((social, index) => (
+        {/* Social Links Grid with Motion Stagger & Hover */}
+        <div ref={socialsRef} style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+          {socials.map((s) => (
             <motion.a
-              key={social.name}
-              href={social.url}
+              key={s.name}
+              href={s.url}
               target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.35 + index * 0.08 }}
-              whileHover={{ y: -3 }}
+              rel="noreferrer"
+              className="btn-sticker"
+              whileHover={{ scale: 1.08, backgroundColor: '#FF0055', color: '#ffffff' }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 18 }}
               style={{
-                fontFamily: "'Sulphur Point', sans-serif",
-                fontSize: '1.3rem',
-                fontWeight: 600,
-                color: 'var(--ink-light)',
-                textDecoration: 'none',
-                letterSpacing: '0.06em',
-                borderBottom: '2px solid transparent',
-                paddingBottom: '2px',
-                transition: 'color 0.2s, border-color 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--ink)';
-                e.currentTarget.style.borderColor = 'var(--ink)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--ink-light)';
-                e.currentTarget.style.borderColor = 'transparent';
+                backgroundColor: s.bg,
+                fontSize: '0.95rem',
+                padding: '0.8rem 1.8rem',
               }}
             >
-              {social.name}
+              {s.name}
             </motion.a>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Contact;
-
-

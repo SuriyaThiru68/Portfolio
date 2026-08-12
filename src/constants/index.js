@@ -3,26 +3,13 @@ import {
   backend,
   creator,
   web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
+  github,
+  menu,
+  close,
+  logo,
   carrent,
   jobit,
   tripguide,
-  threejs,
 } from "../assets";
 
 export const navLinks = [
@@ -62,55 +49,55 @@ const services = [
 const technologies = [
   {
     name: "HTML 5",
-    icon: html,
+    icon: null,
   },
   {
     name: "CSS 3",
-    icon: css,
+    icon: null,
   },
   {
     name: "JavaScript",
-    icon: javascript,
+    icon: null,
   },
   {
     name: "TypeScript",
-    icon: typescript,
+    icon: null,
   },
   {
     name: "React JS",
-    icon: reactjs,
+    icon: null,
   },
   {
     name: "Redux Toolkit",
-    icon: redux,
+    icon: null,
   },
   {
     name: "Tailwind CSS",
-    icon: tailwind,
+    icon: null,
   },
   {
     name: "Node JS",
-    icon: nodejs,
+    icon: null,
   },
   {
     name: "MongoDB",
-    icon: mongodb,
+    icon: null,
   },
   {
     name: "Three JS",
-    icon: threejs,
+    icon: null,
   },
   {
     name: "git",
-    icon: git,
+    icon: null,
   },
   {
     name: "figma",
-    icon: figma,
+    icon: null,
   },
   {
     name: "docker",
-    icon: docker,
+    icon: null,
   },
 ];
 
@@ -118,7 +105,7 @@ const experiences = [
   {
     title: "React.js Developer",
     company_name: "Starbucks",
-    icon: starbucks,
+    icon: null,
     iconBg: "#383E56",
     date: "March 2020 - April 2021",
     points: [
@@ -131,7 +118,7 @@ const experiences = [
   {
     title: "React Native Developer",
     company_name: "Tesla",
-    icon: tesla,
+    icon: null,
     iconBg: "#E6DEDD",
     date: "Jan 2021 - Feb 2022",
     points: [
@@ -144,7 +131,7 @@ const experiences = [
   {
     title: "Web Developer",
     company_name: "Shopify",
-    icon: shopify,
+    icon: null,
     iconBg: "#383E56",
     date: "Jan 2022 - Jan 2023",
     points: [
@@ -157,7 +144,7 @@ const experiences = [
   {
     title: "Full stack Developer",
     company_name: "Meta",
-    icon: meta,
+    icon: null,
     iconBg: "#E6DEDD",
     date: "Jan 2023 - Present",
     points: [

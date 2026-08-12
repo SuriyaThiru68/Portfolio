@@ -1,92 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-
-const SketchArrow = ({ isHovering }) => (
-  <svg
-    width={isHovering ? '28' : '24'}
-    height={isHovering ? '33' : '28'}
-    viewBox="0 0 44 52"
-    fill="none"
-    style={{ display: 'block', transition: 'width 0.15s, height 0.15s' }}
-  >
-    <defs>
-      <clipPath id="arrow-clip">
-        <path d="M3 1 L3.5 35 L13 25.5 L19.5 43 L25.5 40.5 L19 23 L31 23 Z" />
-      </clipPath>
-    </defs>
-
-    <path
-      d="M3 1 L3.5 35 L13 25.5 L19.5 43 L25.5 40.5 L19 23 L31 23 Z"
-      fill="rgba(18,18,18,0.88)"
-    />
-
-    <g clipPath="url(#arrow-clip)" opacity="0.55">
-      {Array.from({ length: 28 }).map((_, i) => {
-        const offset = i * 3.2 - 10;
-        return (
-          <line
-            key={`h${i}`}
-            x1={offset}
-            y1={-2}
-            x2={offset + 50}
-            y2={52}
-            stroke="#f5f0e8"
-            strokeWidth="0.9"
-            strokeLinecap="round"
-          />
-        );
-      })}
-      {Array.from({ length: 18 }).map((_, i) => {
-        const offset = i * 4.5 - 5;
-        return (
-          <line
-            key={`v${i}`}
-            x1={-2}
-            y1={offset}
-            x2={44}
-            y2={offset + 32}
-            stroke="#f5f0e8"
-            strokeWidth="0.75"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        );
-      })}
-    </g>
-
-    <path
-      d="M3.2 1 L2.8 13 L3 23 L3.2 35.5 L12.5 26 L19 43.5 L26 40 L19.2 22.5 L31.5 22.8 L3.2 1 Z"
-      stroke="#ffffff"
-      strokeWidth="2"
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M2.5 1.5 L3.5 18 L2.8 34.5 L13.5 25 L19.8 42.5 L25 40.5 L18.5 23.5 L30.5 23.2 L2.5 1.5 Z"
-      stroke="#ffffff"
-      strokeWidth="1"
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      strokeOpacity="0.35"
-      fill="none"
-    />
-  </svg>
-);
-
 const CustomCursor = () => {
   const [pos, setPos] = useState({ x: -200, y: -200 });
   const [isHovering, setIsHovering] = useState(false);
   const targetRef = useRef({ x: -200, y: -200 });
   const posRef = useRef({ x: -200, y: -200 });
   const rafRef = useRef(null);
-  const domPosRef = useRef({ x: -200, y: -200 });
 
   useEffect(() => {
-    const onMove = (e) => {
-      targetRef.current = { x: e.clientX, y: e.clientY };
-    };
-
+    const onMove = (e) => { targetRef.current = { x: e.clientX, y: e.clientY }; };
     const onEnter = () => setIsHovering(true);
     const onLeave = () => setIsHovering(false);
 
@@ -102,14 +24,10 @@ const CustomCursor = () => {
     const loop = () => {
       const t = targetRef.current;
       const p = posRef.current;
-      const nx = p.x + (t.x - p.x) * 0.22;
-      const ny = p.y + (t.y - p.y) * 0.22;
+      const nx = p.x + (t.x - p.x) * 0.4;
+      const ny = p.y + (t.y - p.y) * 0.4;
       posRef.current = { x: nx, y: ny };
-
-      if (Math.abs(nx - domPosRef.current.x) > 0.3 || Math.abs(ny - domPosRef.current.y) > 0.3) {
-        domPosRef.current = { x: nx, y: ny };
-        setPos({ x: nx, y: ny });
-      }
+      setPos({ x: nx, y: ny });
       rafRef.current = requestAnimationFrame(loop);
     };
 
@@ -120,7 +38,6 @@ const CustomCursor = () => {
     observer.observe(document.body, { childList: true, subtree: true });
 
     rafRef.current = requestAnimationFrame(loop);
-
     return () => {
       window.removeEventListener('mousemove', onMove);
       cancelAnimationFrame(rafRef.current);
@@ -129,25 +46,26 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        
-        left: pos.x,
-        top: pos.y,
-        transform: isHovering ? 'scale(1.12)' : 'scale(1)',
-        pointerEvents: 'none',
-        zIndex: 99999,
-        transition: 'transform 0.18s ease',
-        willChange: 'transform',
-        
-        rotate: '-4deg',
-      }}
-    >
-      <SketchArrow isHovering={isHovering} />
-    </div>
+    <>
+      <div
+        className="custom-cursor"
+        style={{
+          position: 'fixed',
+          left: pos.x,
+          top: pos.y,
+          width: isHovering ? '36px' : '14px',
+          height: isHovering ? '36px' : '14px',
+          backgroundColor: isHovering ? '#bef2bd' : '#000000',
+          border: '1px solid #000000',
+          borderRadius: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
+          zIndex: 99999,
+          transition: 'width 0.15s ease, height 0.15s ease, background-color 0.15s ease',
+        }}
+      />
+    </>
   );
 };
 
 export default CustomCursor;
-

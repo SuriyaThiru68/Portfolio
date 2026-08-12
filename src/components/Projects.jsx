@@ -1,155 +1,257 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import popcorniq from './assests/popcorniq.jpg';
-import codeNotify from './assests/code notify.jpg';
-import gamestore from './assests/gamestore.png';
-import onboardingagent from './assests/onboardingagent.png'
-import iot from './assests/iot.jpg';
-import avatarbooking from './assests/avatarbooking.png'
+import popcorniq from '../assets/popcorniq.png';
+import codeflow from '../assets/codeflow.png';
+import codingwebsite from '../assets/coding contest.png';
+import avatarbooking from '../assets/avatarbooking.png';
+import iot from '../assets/iot.jpg';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     id: '01',
     title: 'CINEMATIC MOVIE EXPLORER',
-    subtitle: 'Personal Project / Full Stack',
-    description: 'A comprehensive movie discovery platform featuring a stunning cinematic interface, real-time data from TMDB API, advanced search and filtering, and personalized watchlists.',
+    subtitle: 'FULL STACK / PERSONAL PROJECT',
+    description: 'A comprehensive movie discovery platform featuring a stunning cinematic interface, real-time TMDB API integration, dynamic filtering, and personalized watchlists.',
     image: popcorniq,
     link: 'https://popcorniq-moviewebsite.vercel.app/',
+    stack: ['REACT.JS', 'TMDB API', 'TAILWIND CSS'],
+    bg: '#b6a4e5',
   },
   {
     id: '02',
-    title: 'CODE NOTIFY',
-    subtitle: 'Automation Tool / Backend',
-    description: 'An intelligent notification system that tracks coding contests across multiple platforms with real-time email alerts, calendar integration, and automated reminders.',
-    image: codeNotify,
-    link: 'https://code-events-track-coding-contests.vercel.app/',
+    title: 'CODE FLOW',
+    subtitle: 'AGENTIC AI & FULL STACK',
+    description: 'Multi-Agent Intelligent Security Vulnerability Detection Platform — autonomous AI agents scanning, detecting, and reporting code vulnerabilities in real time.',
+    image: codeflow,
+    link: 'https://mycodeflow.vercel.app/',
+    stack: ['AI AGENTS', 'PYTHON', 'FASTAPI', 'REACT'],
+    bg: '#bef2bd',
   },
   {
     id: '03',
-    title: 'AI AVATAR BOOKING SYSTEM',
-    subtitle: 'AI & Full Stack',
-    description: 'Developed a smart web-based platform that allows users to book AI-powered avatars for various use cases such as customer support, content creation, virtual assistance, and interactive experiences.',
-    image: avatarbooking,
-    link: 'https://avatar-bookings.vercel.app/',
+    title: 'CODE NOTIFY',
+    subtitle: 'CONTEST TRACKER & FULL STACK',
+    description: 'An intelligent notification system that tracks coding contests across multiple platforms with real-time email alerts, calendar integration, and automated reminders.',
+    image: codingwebsite,
+    link: 'https://codeevents.vercel.app/',
+    stack: ['REACT', 'NODE.JS', 'REST APIS'],
+    bg: '#b6a4e5',
   },
   {
     id: '04',
-    title: 'GAME STORE',
-    subtitle: 'E-commerce Platform',
-    description: 'A modern digital storefront for Xbox games featuring a sleek UI, interactive game catalog, shopping cart functionality, and detailed user reviews.',
-    image: gamestore,
-    link: 'https://suriyathiru68.github.io/Game-Store/',
+    title: 'AI AVATAR BOOKING SYSTEM',
+    subtitle: 'AI & FULL STACK WEB PLATFORM',
+    description: 'A smart web platform to book AI-powered avatars for customer support, content creation, virtual assistance, and interactive video experiences.',
+    image: avatarbooking,
+    link: 'https://github.com/SuriyaThiru68/AvatarBased_Smart_Appointment_Booking_System',
+    stack: ['AI AVATARS', 'REACT', 'EXPRESS'],
+    bg: '#bef2bd',
   },
   {
     id: '05',
-    title: 'PUBLIC TOILET SYSTEM',
-    subtitle: 'IoT Solution',
+    title: 'PUBLIC TOILET FEEDBACK SYSTEM',
+    subtitle: 'IOT HARDWARE & TELEGRAM ALERTS',
     description: 'An innovative IoT solution for public restroom maintenance featuring real-time hygiene monitoring, automated Telegram alerts, and an analytics dashboard.',
     image: iot,
     link: '',
+    stack: ['IOT SENSORS', 'PYTHON', 'TELEGRAM BOT'],
+    bg: '#FF0055',
+    color: '#ffffff',
   },
 ];
 
 const Projects = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const containerRef = useRef(null);
+  const gridRef = useRef(null);
 
-  const handleViewportEnter = (index) => {
-    if (index > activeIndex) {
-      setDirection(1);
-    } else if (index < activeIndex) {
-      setDirection(-1);
+  useGSAP(() => {
+    if (gridRef.current) {
+      gsap.from(gridRef.current.children, {
+        y: 60,
+        opacity: 0,
+        stagger: 0.18,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 80%",
+        }
+      });
     }
-    setActiveIndex(index);
-  };
-
-  const variants = {
-    enter: (dir) => ({ y: dir > 0 ? "100%" : "-100%", opacity: 1 }),
-    center: { y: "0%", opacity: 1, scale: 1 },
-    exit: (dir) => ({ y: dir > 0 ? "-30%" : "30%", opacity: 0.5, scale: 0.95 })
-  };
+  }, { scope: containerRef });
 
   return (
-    <section id="projects" className="relative py-24 md:py-32 bg-[#0B0B0C] text-[#FFFFFF] font-sans">
-      <div className="max-w-[1500px] mx-auto px-6 lg:px-12 w-full relative z-10">
+    <section
+      ref={containerRef}
+      id="projects"
+      style={{
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        padding: '5rem 0',
+        borderBottom: '1px solid #000000',
+        overflow: 'hidden',
+      }}
+    >
+      <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)' }}>
 
-        <div className="flex justify-between items-end border-b border-[#1A1A1D] pb-8 md:pb-12 mb-12 md:mb-24">
-          <h2 className="text-xl md:text-3xl font-normal tracking-wide text-[#FFFFFF] uppercase">
-            PROJECTS
-          </h2>
-          <span className="text-[10px] md:text-sm tracking-[0.2em] font-light text-[#A1A1AA]">
-            /suriya-projects
-          </span>
-        </div>
+        {/* Section Slash Title */}
+        <h2 className="section-slash">
+          /PROJECTS
+        </h2>
 
-        <div className="flex flex-col lg:flex-row relative items-start gap-12 lg:gap-24">
-
-          <div className="w-full lg:w-[60%] lg:sticky lg:top-32 h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden bg-[#111] z-10 relative mt-4">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={activeIndex}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 z-10 bg-[#111]"
-              >
-                <img
-                  src={projects[activeIndex].image}
-                  alt={projects[activeIndex].title}
-                  className="w-full h-full object-cover filter brightness-[0.85]"
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="w-full lg:w-[40%] flex flex-col pb-[30vh]">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                onViewportEnter={() => handleViewportEnter(index)}
-                viewport={{ margin: "-50% 0px -50% 0px" }}
-                className="min-h-[75vh] flex flex-col justify-center py-10"
-              >
-                <div className="text-[13px] md:text-sm font-light tracking-[0.2em] text-[#A1A1AA] mb-6">
-                  [ {(index + 1).toString().padStart(2, '0')} / {projects.length.toString().padStart(2, '0')} ]
+        {/* Gallery Grid of Projects with GSAP Scroll Trigger Stagger */}
+        <div
+          ref={gridRef}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: '2.5rem' }}
+        >
+          {projects.map((proj) => (
+            <motion.div
+              key={proj.id}
+              className="gallery-card"
+              whileHover={{ y: -6, boxShadow: '6px 6px 0 #000000' }}
+              transition={{ duration: 0.2 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                {/* Product Image Frame with Zoom Effect */}
+                <div style={{ borderBottom: '1px solid #000000', overflow: 'hidden', height: 'clamp(200px, 30vh, 280px)', position: 'relative' }}>
+                  <motion.img
+                    src={proj.image}
+                    alt={proj.title}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      backgroundColor: proj.bg,
+                      color: proj.color || '#000000',
+                      border: '1px solid #000000',
+                      padding: '0.3rem 0.7rem',
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontWeight: 700,
+                      fontSize: '0.75rem',
+                    }}
+                  >
+                    PROJECT {proj.id}
+                  </div>
                 </div>
 
-                <h2 className="text-2xl md:text-5xl font-normal tracking-tight uppercase mb-3 text-[#FFFFFF] leading-[1.2] md:leading-[1.1]">
-                  {project.title}
-                </h2>
+                {/* Card Content */}
+                <div style={{ padding: 'clamp(1.25rem, 3vw, 2rem)' }}>
+                  <h3
+                    style={{
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: 'clamp(1.6rem, 4vw, 2.8rem)',
+                      lineHeight: 0.95,
+                      color: '#000000',
+                      marginBottom: '0.6rem',
+                      wordBreak: 'break-word',
+                      overflowWrap: 'break-word',
+                    }}
+                  >
+                    {proj.title}
+                  </h3>
 
-                <div className="text-[12px] md:text-[13px] tracking-widest text-[#EAEAEA] mb-6 md:mb-8 font-light uppercase opacity-80">
-                  {project.subtitle}
+                  <div
+                    style={{
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      color: '#666666',
+                      marginBottom: '1.2rem',
+                    }}
+                  >
+                    {proj.subtitle}
+                  </div>
+
+                  <p
+                    style={{
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontSize: '0.98rem',
+                      lineHeight: 1.6,
+                      color: '#333333',
+                      marginBottom: '1.8rem',
+                    }}
+                  >
+                    {proj.description}
+                  </p>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.8rem' }}>
+                    {proj.stack.map((s) => (
+                      <span
+                        key={s}
+                        style={{
+                          border: '1px solid #000000',
+                          backgroundColor: '#f4f4f0',
+                          padding: '0.25rem 0.6rem',
+                          fontFamily: "'Space Grotesk', sans-serif",
+                          fontWeight: 600,
+                          fontSize: '0.75rem',
+                        }}
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              </div>
 
-                <p className="text-[#A1A1AA] text-sm md:text-base lg:text-lg font-light leading-relaxed mb-8 md:mb-10 max-w-md">
-                  {project.description}
-                </p>
-
-                {project.link && (
+              {/* Action Button Link */}
+              <div style={{ padding: '0 clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2rem)' }}>
+                {proj.link ? (
                   <a
-                    href={project.link}
+                    href={proj.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[12px] md:text-xs tracking-[0.25em] uppercase text-[#EAEAEA] border-b border-[#A1A1AA]/50 pb-2 hover:text-white hover:border-white transition-colors w-max font-medium"
+                    className="btn-sticker"
+                    style={{ width: '100%', textAlign: 'center' }}
                   >
-                    Visit Website
+                    View Live Project →
                   </a>
+                ) : (
+                  <span
+                    style={{
+                      display: 'block',
+                      textAlign: 'center',
+                      border: '1px solid #000000',
+                      padding: '0.6rem',
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontWeight: 700,
+                      fontSize: '0.85rem',
+                      backgroundColor: '#e6e6e2',
+                      color: '#666666',
+                    }}
+                  >
+                    Internal Hardware / Complete
+                  </span>
                 )}
-              </motion.div>
-            ))}
-          </div>
-
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Projects;
-
-

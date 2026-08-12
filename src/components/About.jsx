@@ -1,261 +1,138 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { AboutBg } from './SectionBackgrounds';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import suriyaImg from '../assets/suriya-portrait.png';
 
-
-const ScrollWord = ({ word, start, end, scrollYProgress, highlight }) => {
-  const rawOpacity = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const rawY = useTransform(scrollYProgress, [start, Math.min(end, 1)], [16, 0]);
-  const rawBlur = useTransform(
-    scrollYProgress,
-    [start, end],
-    ['blur(5px)', 'blur(0px)']
-  );
-  const opacity = useSpring(rawOpacity, { stiffness: 260, damping: 28 });
-  const y = useSpring(rawY, { stiffness: 260, damping: 28 });
-
-  return (
-    <motion.span
-      style={{
-        display: 'inline-block',
-        marginRight: '0.3em',
-        opacity,
-        y,
-        filter: rawBlur,
-        ...(highlight || {}),
-      }}
-    >
-      {word}
-    </motion.span>
-  );
-};
-
-
-const ScrollTextBlock = ({
-  words,
-  rangeStart,
-  rangeEnd,
-  scrollYProgress,
-  style,
-  Tag = 'p',
-  highlights = {},
-}) => {
-  const span = rangeEnd - rangeStart;
-  const count = words.length;
-
-  return (
-    <Tag style={{ ...style, lineHeight: 1.75, margin: 0 }}>
-      {words.map((word, i) => {
-        const wordStart = rangeStart + (i / count) * span;
-        const wordEnd = rangeStart + ((i + 0.85) / count) * span;
-        const clean = word.replace(/[.,!?—]$/, '');
-        const highlight = highlights[word] || highlights[clean];
-        return (
-          <ScrollWord
-            key={i}
-            word={word}
-            start={Math.min(wordStart, 0.999)}
-            end={Math.min(wordEnd, 1)}
-            scrollYProgress={scrollYProgress}
-            highlight={highlight}
-          />
-        );
-      })}
-    </Tag>
-  );
-};
-
-
-const ScrollStat = ({ num, label, scrollYProgress, rangeStart, rangeEnd }) => {
-  const rawOpacity = useTransform(scrollYProgress, [rangeStart, rangeEnd], [0, 1]);
-  const rawY = useTransform(scrollYProgress, [rangeStart, rangeEnd], [22, 0]);
-  const opacity = useSpring(rawOpacity, { stiffness: 260, damping: 28 });
-  const y = useSpring(rawY, { stiffness: 260, damping: 28 });
-
-  return (
-    <motion.div style={{ borderLeft: '3px solid var(--ink)', paddingLeft: '1.2rem', opacity, y }}>
-      <div
-        style={{
-          fontFamily: "'Sulphur Point', sans-serif",
-          fontSize: '2.5rem',
-          color: 'var(--ink)',
-          lineHeight: 1,
-        }}
-      >
-        {num}
-      </div>
-      <div
-        style={{
-          fontFamily: "'Sulphur Point', sans-serif",
-          fontSize: '1.1rem',
-          color: 'var(--ink-light)',
-          marginTop: '0.3rem',
-        }}
-      >
-        {label}
-      </div>
-    </motion.div>
-  );
-};
-
-
-const ScrollDivider = ({ scrollYProgress }) => {
-  const scaleX = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
-  const opacity = useTransform(scrollYProgress, [0.14, 0.22], [0, 1]);
-
-  return (
-    <motion.div style={{ transformOrigin: 'left', scaleX, opacity, marginBottom: '3rem' }}>
-      <svg width="220" height="12" viewBox="0 0 220 12" fill="none">
-        <path
-          d="M2 6 Q55 2 110 6 Q165 10 218 6"
-          stroke="#ffffff"
-          strokeWidth="2"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
-    </motion.div>
-  );
-};
-
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 0.85', 'end 0.40'],   
-  });
 
-  const para1Words =
-    "Hi! I'm Suriya T, a Computer Science and Engineering student specialising in Artificial Intelligence and Machine Learning at KIT — Kalaignar Karunanidhi Institute of Technology.".split(' ');
+  useGSAP(() => {
+    gsap.from(titleRef.current, {
+      x: -60,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+      }
+    });
 
-  const para2Words =
-    "I'm fascinated by how technology can think, learn, and solve problems — and deeply in love with design. My goal is to blend creativity and code, making digital products that are both smart and beautiful.".split(' ');
 
-  const headingWords = ['Who', 'I', 'Am'];
-
-  const para1Highlights = {
-    Suriya: { color: 'var(--blue-accent)', fontWeight: 600 },
-    'T,': { color: 'var(--blue-accent)', fontWeight: 600 },
-  };
-  const para2Highlights = {
-    smart: { color: 'var(--ink)', fontWeight: 700 },
-    'beautiful.': { color: 'var(--ink)', fontWeight: 700 },
-  };
-
-  const stats = [
-    { num: '5+', label: 'Projects Built' },
-    { num: '2', label: 'Internships' },
-    { num: '3rd', label: 'Year Student' },
-  ];
+  }, { scope: containerRef });
 
   return (
     <section
-      ref={sectionRef}
+      ref={containerRef}
       id="about"
       style={{
-        backgroundColor: 'transparent',
-        borderTop: '1.5px solid rgba(26,26,26,0.1)',
-        padding: '7rem 2rem',
-        fontFamily: "'Sulphur Point', sans-serif",
+        backgroundColor: '#f4f4f0',
+        color: '#000000',
+        padding: '5rem 0',
+        borderBottom: '1px solid #000000',
         overflow: 'hidden',
-        position: 'relative',
       }}
     >
-      <AboutBg />
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)' }}>
 
-        <motion.p
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.55 }}
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: '1rem',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            color: 'var(--blue-accent)',
-            textTransform: 'uppercase',
-            marginBottom: '0.75rem',
-          }}
-        >
-          ✦ About Me
-        </motion.p>
-
-        <h2
-          style={{
-            fontFamily: "'Sulphur Point', sans-serif",
-            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-            fontWeight: 700,
-            color: 'var(--ink)',
-            lineHeight: 1.1,
-            marginBottom: '2.5rem',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0 0.22em',
-          }}
-        >
-          <ScrollTextBlock
-            words={headingWords}
-            rangeStart={0.01}
-            rangeEnd={0.13}
-            scrollYProgress={scrollYProgress}
-            Tag="span"
-            style={{ display: 'contents' }}
-          />
-        </h2>
-
-        <ScrollDivider scrollYProgress={scrollYProgress} />
-
-        <div className="about-grid">
-
-          <ScrollTextBlock
-            words={para1Words}
-            rangeStart={0.22}
-            rangeEnd={0.50}
-            scrollYProgress={scrollYProgress}
-            highlights={para1Highlights}
-            style={{
-              fontFamily: "'Sulphur Point', sans-serif",
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.55rem)',
-              color: 'var(--ink-light)',
-            }}
-          />
-
-          <ScrollTextBlock
-            words={para2Words}
-            rangeStart={0.36}
-            rangeEnd={0.68}
-            scrollYProgress={scrollYProgress}
-            highlights={para2Highlights}
-            style={{
-              fontFamily: "'Sulphur Point', sans-serif",
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.55rem)',
-              color: 'var(--ink-light)',
-            }}
-          />
+        {/* Section Slash Title */}
+        <div ref={titleRef}>
+          <h2 className="section-slash">
+            /ABOUT
+          </h2>
         </div>
 
-        <div style={{ display: 'flex', gap: '3rem', marginTop: '4rem', flexWrap: 'wrap' }}>
-          {stats.map(({ num, label }, i) => (
-            <ScrollStat
-              key={label}
-              num={num}
-              label={label}
-              scrollYProgress={scrollYProgress}
-              rangeStart={0.70 + i * 0.05}
-              rangeEnd={0.78 + i * 0.05}
-            />
-          ))}
-        </div>
+        {/* 2-Column Catalog Grid */}
+        <div className="about-main-grid">
 
+          {/* Left Column: Portrait Frame */}
+          <motion.div
+            whileHover={{ rotate: 1, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{
+              border: '1px solid #000000',
+              backgroundColor: '#ffffff',
+              padding: '1.5rem',
+              position: 'relative',
+              boxShadow: '6px 6px 0 #000000',
+            }}
+          >
+            <div style={{
+              border: '1px solid #000000',
+              overflow: 'hidden',
+              position: 'relative',
+              backgroundColor: '#f0f0ec',
+              aspectRatio: '1 / 1',
+              width: '100%',
+            }}>
+              <img
+                src={suriyaImg}
+                alt="Suriya Thiruppathy"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center center',
+                  display: 'block',
+                  filter: 'contrast(1.12) grayscale(12%)',
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                marginTop: '1.2rem',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 700,
+                fontSize: '1rem',
+                textTransform: 'uppercase',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span>Suriya Thiruppathy</span>
+
+            </div>
+          </motion.div>
+
+          {/* Right Column: Bio */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: '1.8rem' }}>
+            <p
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)',
+                lineHeight: 1.6,
+                color: '#000000',
+                fontWeight: 500,
+              }}
+            >
+              Computer Science &amp; Engineering student specializing in Artificial Intelligence and Machine Learning at KIT — Kalaignar Karunanidhi Institute of Technology.
+            </p>
+
+            <p
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1rem, 1.4vw, 1.15rem)',
+                lineHeight: 1.6,
+                color: '#444444',
+              }}
+            >
+              I develop high-impact web applications, agentic AI security platforms, contest notification systems, and ML models. My work combines clean architecture with uninhibited visual expression.
+            </p>
+
+
+          </div>
+
+        </div>
       </div>
     </section>
   );
 };
 
 export default About;
-
-
