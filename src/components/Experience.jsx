@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollReveal from './ScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,17 +128,20 @@ const Experience = () => {
                   {exp.company}
                 </div>
 
-                <p
-                  style={{
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={2}
+                  blurStrength={5}
+                  textStyle={{
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: '1.05rem',
                     lineHeight: 1.6,
                     color: '#333333',
-                    margin: 0,
                   }}
                 >
                   {exp.description}
-                </p>
+                </ScrollReveal>
               </div>
             </motion.div>
           ))}

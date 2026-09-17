@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollReveal from './ScrollReveal';
 
 import popcorniq from '../assets/popcorniq.png';
 import codeflow from '../assets/codeflow.png';
@@ -183,17 +184,21 @@ const Projects = () => {
                     {proj.subtitle}
                   </div>
 
-                  <p
-                    style={{
+                  <ScrollReveal
+                    baseOpacity={0}
+                    enableBlur={true}
+                    baseRotation={2}
+                    blurStrength={4}
+                    style={{ marginBottom: '1.8rem' }}
+                    textStyle={{
                       fontFamily: "'Space Grotesk', sans-serif",
                       fontSize: '0.98rem',
                       lineHeight: 1.6,
                       color: '#333333',
-                      marginBottom: '1.8rem',
                     }}
                   >
                     {proj.description}
-                  </p>
+                  </ScrollReveal>
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.8rem' }}>
                     {proj.stack.map((s) => (

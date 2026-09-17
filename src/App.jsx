@@ -76,28 +76,33 @@ const App = () => {
       <CustomCursor />
       <Navbar activeSection={activeSection} />
 
-      <main>
-        <Hero />
-        <Marquee />
-        <Expertise />
-        <About />
-        <ZoomTextSection
-          texts={[
-            "DESIGN. DEVELOP. DEPLOY.",
-            "CREATING SEAMLESS USER EXPERIENCES WITH MODERN TECHNOLOGIES.",
-            "DRIVEN BY CREATIVITY, CODE, AND CONTINUOUS LEARNING.",
-          ]}
-          color="#000000"
-          bgColor="rgb(244, 244, 240)"
-          accentColor="#b6a4e5"
-        />
-        <Skills />
-        <Projects />
-        <Gallery />
-        <Experience />
-        <Contact />
-      </main>
+      {/* Main content sits ABOVE the fixed footer */}
+      <div style={{ position: 'relative', zIndex: 1, backgroundColor: '#f4f4f0' }}>
+        <main>
+          <Hero />
+          <Marquee />
+          <Expertise />
+          <About />
+          <ZoomTextSection
+            texts={[
+              "DESIGN. DEVELOP. DEPLOY.",
+              "CREATING SEAMLESS USER EXPERIENCES WITH MODERN TECHNOLOGIES.",
+              "DRIVEN BY CREATIVITY, CODE, AND CONTINUOUS LEARNING.",
+            ]}
+            color="#000000"
+            bgColor="rgb(244, 244, 240)"
+            accentColor="#b6a4e5"
+          />
+          <Skills />
+          <Projects />
+          <Gallery />
+          <Experience />
+          <Contact />
+        </main>
+      </div>
 
+      {/* Fixed footer revealed when you scroll past content — needs spacer */}
+      <div style={{ height: '100vh' }} />
       <Footer />
     </div>
   );

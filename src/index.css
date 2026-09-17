@@ -210,7 +210,7 @@ html, body, * { cursor: none !important; }
   box-shadow: 3px 3px 0 var(--ink);
 }
 
-/* ── About Section Main Grid ── */
+/* ── About Section Main Grid (legacy) ── */
 .about-main-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -221,6 +221,40 @@ html, body, * { cursor: none !important; }
   .about-main-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+/* ── About Hero Grid (new editorial layout) ── */
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-hero-grid > div:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid #000000;
+  }
+}
+
+/* ── Skills Grid ── */
+.skills-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

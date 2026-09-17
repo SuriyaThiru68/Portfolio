@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollReveal from './ScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
   { name: 'LinkedIn →', url: 'https://www.linkedin.com/in/suriyathiruppathy/', bg: '#b6a4e5' },
-  { name: 'GitHub →',   url: 'https://github.com/SuriyaThiru68', bg: '#bef2bd' },
-  { name: 'Codolio →',  url: 'https://codolio.com/profile/SURIYA%20T', bg: '#b6a4e5' },
+  { name: 'GitHub →', url: 'https://github.com/SuriyaThiru68', bg: '#bef2bd' },
+  { name: 'Codolio →', url: 'https://codolio.com/profile/SURIYA%20T', bg: '#b6a4e5' },
 ];
 
 const Contact = () => {
@@ -61,15 +62,16 @@ const Contact = () => {
       ref={containerRef}
       id="contact"
       style={{
-        backgroundColor: '#ffffff',
         color: '#000000',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
         padding: '6rem 0 5rem',
         borderBottom: '1px solid #000000',
         overflow: 'hidden',
       }}
     >
       <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)', textAlign: 'center' }}>
-        
+
         <div ref={titleRef}>
           <h2 className="section-slash" style={{ textAlign: 'center', marginBottom: '2rem' }}>
             /GET IN TOUCH
@@ -93,18 +95,23 @@ const Contact = () => {
           </h3>
         </div>
 
-        <p
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: 'clamp(1rem, 1.8vw, 1.35rem)',
-            color: '#444444',
-            maxWidth: '650px',
-            margin: '0 auto 3rem',
-            lineHeight: 1.6,
-          }}
-        >
-          Available for full-stack engineering roles, agentic AI platform development, machine learning projects, and freelance collaborations.
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={3}
+            blurStrength={6}
+            style={{ maxWidth: '650px', margin: '0 auto 3rem', textAlign: 'center' }}
+            textStyle={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: 'clamp(1rem, 1.8vw, 1.35rem)',
+              color: '#444444',
+              lineHeight: 1.6,
+            }}
+          >
+            Available for full-stack engineering roles, agentic AI platform development, machine learning projects, and freelance collaborations.
+          </ScrollReveal>
+        </div>
 
         {/* Email Sticker Button with Spring Physics */}
         <div style={{ marginBottom: '4rem' }}>

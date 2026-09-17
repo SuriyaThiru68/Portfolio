@@ -55,80 +55,108 @@ const Skills = () => {
       style={{
         backgroundColor: '#f4f4f0',
         color: '#000000',
-        padding: '5rem 0',
         borderBottom: '1px solid #000000',
         overflow: 'hidden',
       }}
     >
-      <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto', padding: '0 clamp(1rem, 4vw, 3rem)' }}>
-        
-        <div ref={titleRef}>
-          <h2 className="section-slash">
-            /TECHNICAL SKILLS
-          </h2>
-        </div>
+      {/* Title Bar */}
+      <div
+        ref={titleRef}
+        style={{
+          borderBottom: '1px solid #000000',
+          padding: '0.6rem clamp(1rem, 4vw, 3rem)',
+        }}
+      >
+        <h2 className="section-slash">/TECHNICAL SKILLS</h2>
+      </div>
 
+      <div style={{ padding: 'clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem)' }}>
         <div
           ref={gridRef}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '0',
+            border: '1px solid #000000',
+          }}
+          className="skills-grid"
         >
-          {skillCategories.map((cat) => (
+          {skillCategories.map((cat, i) => (
             <motion.div
               key={cat.title}
-              whileHover={{ y: -6, boxShadow: '6px 6px 0 #000000' }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ backgroundColor: '#fffff8', zIndex: 2 }}
+              transition={{ duration: 0.15 }}
               style={{
-                border: '1px solid #000000',
                 backgroundColor: '#ffffff',
-                padding: 'clamp(1.25rem, 3vw, 2rem)',
+                padding: 'clamp(1.2rem, 2.5vw, 1.8rem)',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                gap: '1rem',
+                borderRight: (i + 1) % 3 !== 0 ? '1px solid #000000' : 'none',
+                borderBottom: i < skillCategories.length - (skillCategories.length % 3 || 3) ? '1px solid #000000' : 'none',
+                position: 'relative',
               }}
             >
-              <div>
+              {/* Category header */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <div
                   style={{
+                    width: '10px',
+                    height: '10px',
                     backgroundColor: cat.bg,
-                    color: cat.color || '#000000',
                     border: '1px solid #000000',
-                    padding: '0.5rem 1rem',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
                     fontFamily: "'Space Grotesk', sans-serif",
-                    fontWeight: 700,
-                    fontSize: '0.85rem',
-                    marginBottom: '1.5rem',
+                    fontWeight: 800,
+                    fontSize: '0.7rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: '#000000',
                   }}
                 >
                   {cat.title}
-                </div>
+                </span>
+              </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
-                  {cat.skills.map((s) => (
-                    <motion.span
-                      key={s}
-                      whileHover={{ scale: 1.08, backgroundColor: '#000000', color: '#bef2bd' }}
-                      transition={{ duration: 0.15 }}
-                      style={{
-                        border: '1px solid #000000',
-                        backgroundColor: '#f4f4f0',
-                        padding: '0.4rem 0.8rem',
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontWeight: 600,
-                        fontSize: '0.8rem',
-                        textTransform: 'uppercase',
-                        color: '#000000',
-                        cursor: 'default',
-                      }}
-                    >
-                      {s}
-                    </motion.span>
-                  ))}
-                </div>
+              {/* Colored accent line */}
+              <div style={{
+                width: '100%',
+                height: '3px',
+                backgroundColor: cat.bg,
+                border: '1px solid #000000',
+              }} />
+
+              {/* Skill pills */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                {cat.skills.map((s) => (
+                  <motion.span
+                    key={s}
+                    whileHover={{ backgroundColor: '#000000', color: cat.bg === '#FF0055' ? '#ffffff' : cat.bg }}
+                    transition={{ duration: 0.12 }}
+                    style={{
+                      border: '1px solid #000000',
+                      backgroundColor: '#f4f4f0',
+                      padding: '0.3rem 0.65rem',
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontWeight: 600,
+                      fontSize: '0.72rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                      color: '#000000',
+                      cursor: 'default',
+                    }}
+                  >
+                    {s}
+                  </motion.span>
+                ))}
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

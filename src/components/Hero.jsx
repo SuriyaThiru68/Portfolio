@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import hrImage from '../assets/suriya.png';
+import ScrollReveal from './ScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,21 +121,27 @@ const Hero = () => {
             </motion.h2>
           </div>
           {/* Description */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-              lineHeight: 1.7,
-              color: '#333333',
-              marginTop: '2rem',
-              maxWidth: '480px',
-            }}
           >
-            I design and develop digital products that combine thoughtful user experiences, scalable engineering, and AI to solve real-world problems.
-          </motion.p>
+            <ScrollReveal
+              baseOpacity={0}
+              enableBlur={true}
+              baseRotation={3}
+              blurStrength={6}
+              style={{ marginTop: '2rem', maxWidth: '480px' }}
+              textStyle={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+                lineHeight: 1.7,
+                color: '#333333',
+              }}
+            >
+              I design and develop digital products that combine thoughtful user experiences, scalable engineering, and AI to solve real-world problems.
+            </ScrollReveal>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
