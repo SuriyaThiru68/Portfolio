@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollReveal from './ScrollReveal';
 
-import popcorniq from '../assets/popcorniq.png';
+import popcorniq from '../assets/popcorniq.jpg';
 import codeflow from '../assets/codeflow.png';
 import codingwebsite from '../assets/coding contest.png';
 import avatarbooking from '../assets/avatarbooking.png';

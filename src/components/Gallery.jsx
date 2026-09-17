@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // ── local project assets ────────────────────────────────────────────────────
-import popcorniq     from "../assets/popcorniq.png";
+import popcorniq     from "../assets/popcorniq.jpg";
 import codeflow      from "../assets/codeflow.png";
 import codenotify    from "../assets/code notify.jpg";
 import avatarbooking from "../assets/avatarbooking.png";
